@@ -1,0 +1,12 @@
+#formbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+    gap: 10px;
+}
+
+button:hover {
+background-color: green;
+}
+

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Announcement from "../models/announcements";
+import Announcement from "../models/announcements.js";
 
 const router = Router();
 
@@ -7,13 +7,12 @@ router.get("/", (request,response) => {
     response.send("Server connected")
 })
 
-router.post("/createannouncement", validationMiddleware, async (request, response) => {
-
+router.post("/createannouncement", async (request, response) => {
+//TODO: validationMiddleware
     
     const announcement = new Announcement({
         title: request.body.room,
         user: request.body.user,
-        title: request.body.title,
         body: request.body.body
         
     })

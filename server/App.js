@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/", router);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.SERVER_PORT, () => {
     console.log(`Server is now listening on port ${process.env.SERVER_PORT}`)
 })
 

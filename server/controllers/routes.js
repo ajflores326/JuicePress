@@ -11,8 +11,7 @@ router.get("/", (request,response) => {
 router.post("/createannouncement", async (request, response) => {
     
     const announcement = new Announcement({
-        title: request.body.room,
-        user: request.body.user,
+        title: request.body.title,
         body: request.body.body
         
     })

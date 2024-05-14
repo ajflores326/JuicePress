@@ -11,8 +11,7 @@ router.post("/createannouncement", async (request, response) => {
 //TODO: validationMiddleware
     
     const announcement = new Announcement({
-        title: request.body.room,
-        user: request.body.user,
+        title: request.body.title,
         body: request.body.body
         
     })

@@ -20,7 +20,11 @@ const userSchema = new Schema ({
     email: {
         type: String,
         required: true
-    }
+    },
+    isAdmin: {
+    type: "Boolean",
+    required: true
+  }
 });
 
 export default model("User", userSchema);

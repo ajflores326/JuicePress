@@ -2,7 +2,7 @@ import { Router, request } from "express";
 import User from "../models/user.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+// import validationMiddleware from "../middleware/validationMiddleware.js";
 
 const router = Router();
 
@@ -24,11 +24,11 @@ router.post("/signup", async (request, response)=>{
 
     // creates new user 
     const newUser = new User({
-      firstName: request.body.firstName,
-      lastName: request.body.lastName,
-      username: request.body.username,
-      password: hashedPassword,
-      email: request.body.email
+    firstName: request.body.firstName,
+    lastName: request.body.lastName,
+    username: request.body.username,
+    password: hashedPassword,
+    email: request.body.email
     });
 
     //saves user to database

@@ -1,0 +1,23 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* nav {
+display: flex;
+flex-direction: column;
+justify-content: ;
+align-items: ;
+gap: 10%;
+
+} */
+
+#container2 {
+display: flex;
+}
+
+#container3 {
+    display: flex;
+    
+}

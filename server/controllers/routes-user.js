@@ -6,47 +6,48 @@ import jwt from "jsonwebtoken";
 
 const router = Router();
 
-router.post("/signup", async (request, response)=>{
-  // this will check if an email is duplicated
-  try {
-    const doesEmailExist = await User.exists({
-      email: request.body.email
-    });
+//checks to see if user exists and if not adds new user to database
+router.post("/signup", async (request, response) => {
+    try {
+        //checking if user exists in database
+        const UserExists = await User.exists({
+            username: request.body.username
+        })
 
-    if(doesEmailExist) {
-      return response.status(400).json({
-        message: "Email is already in use"
-      });
-    }
+        //user does not exist in database, create new user
+        if (UserExists === null) {
 
-    // this hashes password
-    const hashedPassword = await bcryptjs.hash(request.body.password, 10);
+            //created variable for hashing password
+            const hashedPassword = await bcryptjs.hash(request.body.password, 10);
 
-    // creates new user 
-    const newUser = new User({
-    firstName: request.body.firstName,
-    lastName: request.body.lastName,
-    username: request.body.username,
-    password: hashedPassword,
-    email: request.body.email
-    });
+            const user = new User({
+                firstName: request.body.firstName,
+                lastName: request.body.lastName,
+                username: request.body.username,
+                password: hashedPassword,
+                email: request.body.email
 
-    //saves user to database
-    await newUser.save();
+            });
 
-    //generates JWT token
-    const token = jwt.sign({id: newUser._id}, process.env.SECRET_KEY);
 
-    // if a successful response is made
-    response.status(201).json({
-      message: "User Created Successfully",
-      token
-    });
-    } catch(error) {
-      console.error("Error creating user:", error);
-      response.status(500).json({message: "An error occurred, please try again."})
+            //save new user to database
+            await user.save();
+
+            //allowing user to access chat server
+            const token = jwt.sign({ id: user._id },
+                process.env.SECRET_KEY);
+
+            response.send({
+                message: "User Successfully added!",
+                token,
+                user
+            });
+        } else {
+            response.send("User already taken!");
+        }
+    } catch (error) {
+        response.send(error.message);
     }
 });
-
 
 export default router;

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './components/styles/Home.css';
 import JPLogo from './images/JPLogo.png';
+import CreateAnnouncement from './components/CreateAnnouncement';
 
 
 
 function App() {
 
+const [hasRender, setRender] = useState(false);
 
   return (
     
@@ -14,7 +16,8 @@ function App() {
       <nav id='nav1'>
         <button>Profile</button>
         <button>Slack</button>
-        <button>Create Announcement</button>
+        <button onClick={()=> setRender(true)}>Create Announcement</button>
+        {hasRender && <CreateAnnouncement/>}
         <button>Google Workspace</button>
         <button>Blanket Pro</button>
       </nav>

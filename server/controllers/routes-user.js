@@ -6,8 +6,6 @@ import jwt from "jsonwebtoken";
 
 const router = Router();
 
-
-
 //checks to see if user exists and if not adds new user to database
 router.post("/signup", async (request, response) => {
     try {
@@ -30,8 +28,7 @@ router.post("/signup", async (request, response) => {
                 email: request.body.email
 
             });
-
-
+            
             //save new user to database
             await user.save();
 
@@ -51,5 +48,31 @@ router.post("/signup", async (request, response) => {
         response.send(error.message);
     }
 });
+
+
+// log user in and verify token
+router.post("/signin", async (request, response) => {
+  try {
+    const user = await User.findOne({ 
+        username: request.body.username
+     });
+
+    if (user && await bcryptjs.compare(request.body.password, user.hashedPassword) ) {
+      // User not found
+      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
+      response.send({
+        message: "Success",
+        token
+      });
+    } else {
+        response.status(401).send({
+        message: "Invalid username or password"
+     })
+    }
+  } catch (err) {
+    response.status(500).send({ message: err.message });
+  }
+});
+
 
 export default router;

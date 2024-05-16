@@ -1,17 +1,25 @@
-import { useState } from 'react'
+
+import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import CreateAnnouncement from '../components/CreateAnnouncement'
+import JPLogo from './images/JPLogo.png';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+
 
   return (
-    <>
-      <CreateAnnouncement> </CreateAnnouncement>
-    </>
+
+    <div>
+      Test Page
+    </div>
+
   )
+ 
+    
 }
 
 export default App

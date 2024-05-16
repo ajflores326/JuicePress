@@ -28,7 +28,8 @@ router.post("/signup", async (request, response) => {
                 email: request.body.email
 
             });
-            
+
+
             //save new user to database
             await user.save();
 
@@ -57,7 +58,7 @@ router.post("/signin", async (request, response) => {
         username: request.body.username
      });
 
-    if (user && await bcryptjs.compare(request.body.password, user.hashedPassword) ) {
+    if (user && await bcryptjs.compare(request.body.password, user.password) ) {
       // User not found
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
       response.send({

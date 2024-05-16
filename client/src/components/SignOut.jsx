@@ -8,6 +8,7 @@ function SignOut() {
     // Define the handleClick function to navigate to a new route
     const handleSignOut = () => {
         history.push('/login'); // Navigates to login page after signing out
+        localStorage.removeItem('jwtToken')
     };
 
    

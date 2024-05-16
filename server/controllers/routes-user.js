@@ -51,6 +51,7 @@ router.post("/signup", async (request, response) => {
 });
 
 
+
 // log user in and verify token
 router.post("/signin", async (request, response) => {
   try {
@@ -74,6 +75,5 @@ router.post("/signin", async (request, response) => {
     response.status(500).send({ message: err.message });
   }
 });
-
 
 export default router;

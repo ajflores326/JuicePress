@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/SignUp.css';
-import JPLogo from './images/JPLogo.png';
+import JPLogo from '../images/JPLogo.png';
 
 export default function SignUp() {
     return (

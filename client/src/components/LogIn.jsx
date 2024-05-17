@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import "./styles/LogIn.css";
 import React, { useState } from "react";
-import JPLogo from './images/JPLogo.png';
+import JPLogo from '../images/JPLogo.png';
 
 
 export default function LogIn() {

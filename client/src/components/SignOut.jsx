@@ -5,10 +5,10 @@ function SignOut() {
     // Get the history object
     const history = useHistory(); 
 
+    // Define the handleClick function to navigate to a new route
     const handleSignOut = () => {
-        // Remove the JWT from localStorage
-        localStorage.removeItem('jwtToken');
         history.push('/login'); // Navigates to login page after signing out
+        localStorage.removeItem('jwtToken')
     };
 
    
@@ -22,5 +22,3 @@ function SignOut() {
 export default SignOut;
 
 // https://tinyurl.com/26yqr9vk
-
-

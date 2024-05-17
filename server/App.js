@@ -1,6 +1,7 @@
 import express from 'express';
 import "dotenv/config";
 import router from "./controllers/routes.js";
+import userRouter from "./controllers/routes-user.js";
 import mongoose from "mongoose";
 import cors from "cors";
 
@@ -9,8 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/", router);
+app.use("/user", userRouter)
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.SERVER_PORT, () => {
     console.log(`Server is now listening on port ${process.env.SERVER_PORT}`)
 })
 

@@ -5,7 +5,7 @@ const announcementSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    user: {
+    author: {
         type: String,
     },
     title: {

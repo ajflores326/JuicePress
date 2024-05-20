@@ -36,7 +36,7 @@ export default function LogIn() {
 
       {/* displays the log in form  */}
       <form>
-        <h1>Let's See What's Juicy!</h1>
+        <h1>Log In</h1>
         <input className="inputSize" placeholder='Email' type="email"></input>
         <input className="inputSize" placeholder='Password' type="password"></input>
         <button>Log In</button>

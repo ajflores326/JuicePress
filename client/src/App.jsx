@@ -24,7 +24,7 @@ import JPLogo from './images/JPLogo.png';
 
 export default function App() {
   return (
-    <div>
+
       <div>
         <form>
         <h1 className="text-4xl font-semibold underline text-green-400">Sign Up</h1>
@@ -37,11 +37,7 @@ export default function App() {
           <button className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Log In</button>
 
           <img src={JPLogo} alt="Juice Press Logo" width="30%" height="30%"></img>
-        </form>
-      </div>
-
-    </div>
-
+        </div>
   )
 }
 

@@ -26,7 +26,6 @@ export default function App() {
   return (
 
       <div>
-        <form>
         <h1 className="text-4xl font-semibold underline text-green-400">Sign Up</h1>
           <input className="rounded" placeholder="First Name"></input>
           <input className="rounded" placeholder="Last Name"></input>

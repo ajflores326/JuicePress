@@ -8,14 +8,13 @@ import Home from './components/Home';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("jwt-token"));
-
+  const [setHome, setNewHome] = useState(false);
   return (
-    <div>
- <LogIn> </LogIn>
- <SignUp> </SignUp>
-    </div>
-  )
+ 
+      <div>
+        <LogIn setToken={setToken}> </LogIn>
+      </div>
+  );
 }
-
 export default App
 

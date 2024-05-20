@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/Home.css';
 import JPLogo from '../images/JPLogo.png';
-import CreateAnnouncement from '/components/CreateAnnouncement';
+import CreateAnnouncement from './CreateAnnouncement';
 
 export default function Home() {
 

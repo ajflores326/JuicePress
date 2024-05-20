@@ -36,14 +36,14 @@ export default function LogIn() {
 
       {/* displays the log in form  */}
       <form>
-        <h1>Let's See What's Juicy!</h1>
-        <input className="inputSize" placeholder='Email' type="email"></input>
-        <input className="inputSize" placeholder='Password' type="password"></input>
-        <button>Log In</button>
-        <p>Don't have an account?</p>
-        <button>Sign Up</button>
-        <img src={JPLogo} alt="Juice Press Logo" width="30%" height="30%"></img>
-      </form>
+          <h1 className="text-4xl font-semibold underline text-green-400">Log In</h1>
+          <input className="rounded" placeholder="Empolyee ID" type="number"></input>
+          <input className="rounded" placeholder="Password" type="password"></input>
+          <button className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Log In</button>
+          <p>Don't have an account?</p>
+          <button className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Sign Up</button>
+          <img src={JPLogo} alt="Juice Press Logo" width="30%" height="30%"></img>
+        </form>
 
     </div>
   )

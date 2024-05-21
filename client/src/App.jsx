@@ -5,6 +5,7 @@
 // import LogIn from './components/LogIn';
 // import Home from './components/Home';
 import JPLogo from './images/JPLogo.png';
+import CreateAnnouncement from './components/CreateAnnouncement';
 
 // function App() {
 //   const [token, setToken] = useState(localStorage.getItem("jwt-token"));
@@ -26,18 +27,26 @@ export default function App() {
   return (
     <div>
       <div>
-        <form>
-        <h1 className="text-4xl font-semibold underline text-green-400">Sign Up</h1>
-          <input className="rounded" placeholder="First Name"></input>
-          <input className="rounded" placeholder="Last Name"></input>
-          <input className="rounded" placeholder="Empolyee ID" type="number"></input>
-          <input className="rounded" placeholder="Password" type="password"></input>
-          <button className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Sign Up</button>
-          <p>Already have an account?</p>
-          <button className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Log In</button>
+      <div>
+      <img src={JPLogo} alt="Juice Press Logo" width="20%" height="20%"></img>
+      <nav id='nav1'>
+        <button>Profile</button>
+        <button>Slack</button>
+        {/* <button onClick={()=> setRender(true)}>Create Announcement</button>
+        {hasRender && <CreateAnnouncement/>} */}
+        <button>Google Workspace</button>
+        <button>Blanket Pro</button>
+      </nav>
 
-          <img src={JPLogo} alt="Juice Press Logo" width="30%" height="30%"></img>
-        </form>
+      <div id='container2'>
+        <h2>Important Announcements</h2>
+       </div>
+
+    <div id='conatiner3'>
+      <button>Help</button>
+      <button>Sign Out</button>
+      </div>
+    </div>
       </div>
 
     </div>

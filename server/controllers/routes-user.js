@@ -11,7 +11,7 @@ router.post("/signup", async (request, response) => {
     try {
         //checking if user exists in database
         const UserExists = await User.exists({
-            username: request.body.username
+            employeeID: request.body.employeeID
         })
 
         //user does not exist in database, create new user
@@ -23,9 +23,8 @@ router.post("/signup", async (request, response) => {
             const user = new User({
                 firstName: request.body.firstName,
                 lastName: request.body.lastName,
-                username: request.body.username,
                 password: hashedPassword,
-                email: request.body.email
+                employeeID: request.body.employeeID
 
             });
 
@@ -53,10 +52,10 @@ router.post("/signup", async (request, response) => {
 
 
 // log user in and verify token
-router.post("/signin", async (request, response) => {
+router.post("/login", async (request, response) => {
   try {
     const user = await User.findOne({ 
-        email: request.body.email
+        employeeID: request.body.employeeID
      });
 
     if (user && await bcryptjs.compare(request.body.password, user.password) ) {

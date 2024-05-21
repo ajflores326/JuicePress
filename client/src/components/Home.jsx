@@ -5,7 +5,7 @@ import CreateAnnouncement from './CreateAnnouncement';
 
 export default function Home() {
 
-  const [hasRender, setRender] = useState(false);
+  // const [hasRender, setRender] = useState(false);
 
     return (
       <div>
@@ -13,8 +13,9 @@ export default function Home() {
       <nav id='nav1'>
         <button>Profile</button>
         <button>Slack</button>
-        <button onClick={()=> setRender(true)}>Create Announcement</button>
-        {hasRender && <CreateAnnouncement/>}
+        <button> Create Announcement</button>
+        {/* <button onClick={()=> setRender(true)}>Create Announcement</button> */}
+        {/* {hasRender && <CreateAnnouncement/>} */}
         <button>Google Workspace</button>
         <button>Blanket Pro</button>
       </nav>

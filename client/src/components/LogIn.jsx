@@ -6,7 +6,7 @@ import JPLogo from '../images/JPLogo.png';
 export default function LogIn() {
   const [employeeID, setEmployeeID] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function submitSignIn(event) {
     event.preventDefault();
@@ -25,11 +25,10 @@ export default function LogIn() {
       const body = await response.json();
       localStorage.setItem("jwt-token", body.token);
       // setToken(body.token);
-      // navigate('/home')
-      console.log(body.message)
+      navigate('/home')
     } else {
-      const body = await response.json();
-      console.log(body.message)
+      navigate('/signup')
+      alert("User and/or password not found! Please sign up for an account.")
     }
   }
   return (
@@ -40,7 +39,10 @@ export default function LogIn() {
     <button className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded" type = "Submit">Log In</button>
     <p>Don't have an account?</p>
     <a href = "/signup" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded"> Sign Up</a>
+    <p>Have a Juice Press Email?</p>
+    <a href = "" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Click Here</a>
     <img src={JPLogo} alt="Juice Press Logo" width="30%" height="30%"></img>
+    
     </form>
   )
 }

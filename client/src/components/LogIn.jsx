@@ -1,5 +1,4 @@
 import { useNavigate, Link } from "react-router-dom";
-import "./styles/LogIn.css";
 import React, { useState } from "react";
 import JPLogo from '../images/JPLogo.png';
 
@@ -34,7 +33,7 @@ export default function LogIn() {
     }
   }
   return (
-    <form onSubmit={submitSignIn}>
+    <form onSubmit={submitSignIn} className="">
     <h1 className="text-4xl font-semibold underline text-green-400">Log In</h1>
     <input className="rounded" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
     <input className="rounded" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>

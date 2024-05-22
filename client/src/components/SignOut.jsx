@@ -23,8 +23,7 @@ function SignOut() {
         <button onClick={() => { 
         localStorage.removeItem("jwt-token")
         navigate('/')
-        className='block bg-green-300 rounded-full m-8 px-8 py-3 hover:bg-green-400'
-        }}> Sign Out </button>
+        }} className='block bg-green-300 rounded-full m-8 px-8 py-3 hover:bg-green-400' > Sign Out </button>
         </div>
     );
 };

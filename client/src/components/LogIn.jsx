@@ -7,7 +7,7 @@ import JPLogo from '../images/JPLogo.png';
 export default function LogIn() {
   const [employeeID, setEmployeeID] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function submitSignIn(event) {
     event.preventDefault();
@@ -26,10 +26,11 @@ export default function LogIn() {
       const body = await response.json();
       localStorage.setItem("jwt-token", body.token);
       // setToken(body.token);
-      // navigate('/home')
+      navigate('/home')
       console.log(body.message)
     } else {
       const body = await response.json();
+      navigate('/home')
       console.log(body.message)
     }
   }

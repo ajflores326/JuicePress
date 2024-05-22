@@ -27,11 +27,9 @@ export default function LogIn() {
       localStorage.setItem("jwt-token", body.token);
       // setToken(body.token);
       navigate('/home')
-      console.log(body.message)
     } else {
-      const body = await response.json();
-      navigate('/home')
-      console.log(body.message)
+      navigate('/signup')
+      alert("User and/or password not found! Please sign up for an account.")
     }
   }
   return (

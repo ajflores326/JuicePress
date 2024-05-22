@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/Home.css';
 import JPLogo from '../images/JPLogo.png';
 import CreateAnnouncement from './CreateAnnouncement';
+import SignOut from './SignOut';
 
 export default function Home() {
 
@@ -20,7 +21,8 @@ export default function Home() {
           <button className='block bg-green-300 rounded-full m-8 px-9 py-3 hover:bg-green-400'>Profile</button>
           <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
           <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Help</button>
-          <button className='block bg-green-300 rounded-full m-8 px-8 py-3 hover:bg-green-400'>Sign Out</button>
+          <SignOut> </SignOut>
+          {/* <button className='block bg-green-300 rounded-full m-8 px-8 py-3 hover:bg-green-400'>Sign Out</button> */}
           {/* <button> Create Announcement</button> */}
           {/* <button onClick={()=> setRender(true)}>Create Announcement</button> */}
           {/* {hasRender && <CreateAnnouncement/>} */}

@@ -1,14 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import LogIn from './components/LogIn.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import LogIn from './components/LogIn.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import SignUp from './components/SignUp.jsx'
-import Home from './components/Home.jsx'
+import SignUp from './components/SignUp.jsx';
+import Home from './components/Home.jsx';
+import AdminLogIn from './components/AdminLogIn.jsx';
+import AdminSignUp from './components/AdminSignUp.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,14 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Home> </Home>,
   },
+  {
+    path: "/adminLogin",
+    element: <AdminLogIn></AdminLogIn>
+  },
+  {
+    path: "/adminSignup",
+    element: <AdminSignUp></AdminSignUp>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

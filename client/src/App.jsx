@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
 import Home from './components/Home';
+import AdminLogIn from './components/AdminLogIn';
+import AdminSignUp from './components/AdminSignUp';
 
 
 function App() {

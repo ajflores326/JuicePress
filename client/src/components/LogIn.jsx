@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styles/LogIn.css";
 import React, { useState } from "react";
 import JPLogo from '../images/JPLogo.png';
@@ -29,7 +29,7 @@ export default function LogIn() {
       navigate('/home')
     } else {
       navigate('/signup')
-      alert("User and/or password not found! Please sign up for an account.")
+      alert("ID and/or password not found! Please sign up for an account.")
     }
   }
   return (
@@ -41,12 +41,9 @@ export default function LogIn() {
     <p>Don't have an account?</p>
     <a href = "/signup" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded"> Sign Up</a>
     <p>Have a Juice Press Email?</p>
-    <a href = "" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Click Here</a>
+    <a href = "/adminLogin" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Click Here</a>
     <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
-    
     </form>
   )
 }
 
-// border-black mt-16 box-content h-45 w-32 p-16  
-// border-4 rounded-lg bg-gray-300

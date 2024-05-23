@@ -33,17 +33,20 @@ export default function LogIn() {
     }
   }
   return (
-    <form onSubmit={submitSignIn}>
+    <form className="h-screen flex flex-col items-center justify-center border rounded-none" onSubmit={submitSignIn}>
     <h1 className="text-4xl font-semibold underline text-green-400">Log In</h1>
-    <input className="rounded" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
-    <input className="rounded" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
-    <button className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded" type = "Submit">Log In</button>
+    <input className="rounded py-2 px-4 border border-black" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
+    <input className="rounded py-2 px-4 border border-black" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+    <button className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded" type = "Submit">Log In</button>
     <p>Don't have an account?</p>
-    <a href = "/signup" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded"> Sign Up</a>
+    <a href = "/signup" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded"> Sign Up</a>
     <p>Have a Juice Press Email?</p>
-    <a href = "" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border border-green-300 hover:border-transparent rounded">Click Here</a>
-    <img src={JPLogo} alt="Juice Press Logo" width="30%" height="30%"></img>
+    <a href = "" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Click Here</a>
+    <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
     
     </form>
   )
 }
+
+// border-black mt-16 box-content h-45 w-32 p-16  
+// border-4 rounded-lg bg-gray-300

@@ -8,7 +8,7 @@ export default function CreateAnnouncement({setToken}) {
 
    async function submitCreateAnnouncement(event) {
         event.preventDefault();
-        const response = await fetch("http://localhost:3000/createannouncement", {
+        const response = await fetch(`${process.env.SERVER_URL}/createannouncement`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

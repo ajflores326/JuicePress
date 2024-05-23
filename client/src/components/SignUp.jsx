@@ -15,7 +15,7 @@ export default function SignUp({ setToken }) {
     async function submitSignUp(event) {
         event.preventDefault(); //stop page from refreshing on submit
         //send username and password to backend
-        const response = await fetch("http://localhost:3000/user/signup", {
+        const response = await fetch(`${process.env.SERVER_URL}/user/signup`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

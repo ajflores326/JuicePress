@@ -60,7 +60,7 @@ export default function SignUp({ setToken }) {
                 <p>Already have an account?</p>
                 <a href="/" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Log In</a>
                 <p>Have a Juice Press Email?</p>
-                <a href="" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Click Here</a>
+                <a href="/adminSignup" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Click Here</a>
                 <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
             </form>
         </div>

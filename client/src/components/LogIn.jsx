@@ -11,7 +11,7 @@ export default function LogIn() {
 
   async function submitSignIn(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:3000/user/login", {
+    const response = await fetch(`${process.env.SERVER_URL}/user/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json"

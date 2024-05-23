@@ -9,7 +9,7 @@ export default function AdminLogIn() {
 
     async function submitLogIn(event) {
         event.preventDefault();
-        const response = await fetch("http://localhost:3000/user/adminLogin", {
+        const response = await fetch(`${process.env.SERVER_URL}/user/adminLogin`, {
             method: "POST",
             header: {
                 "content-type": "application/json"

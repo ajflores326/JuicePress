@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import JPLogo from '../images/JPLogo.png';
 
 
+
 export default function LogIn() {
   const [employeeID, setEmployeeID] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +12,7 @@ export default function LogIn() {
 
   async function submitSignIn(event) {
     event.preventDefault();
-    const response = await fetch(`${process.env.SERVER_URL}/user/login`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/login`, {
       method: "POST",
       headers: {
         "content-type": "application/json"

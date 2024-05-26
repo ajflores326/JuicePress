@@ -77,29 +77,6 @@ export default function Home() {
             </form>
         </Popup>
           </nav>
-
-
-            {/* <Popup trigger = {
-              <button className=' bg-green-300 hover:bg-green-400' id ='announcement-button' onClick={handleCreateAnnouncement}>Create Announcement</button>}>
-              
-              <form className='announcement-form' onSubmit={handleAnnouncementSubmit}>
-              <input
-              className='rounded py-2 px-4 border border-black m-2'
-              placeholder='Announcement Title'
-              value={announcementTitle}
-              onChange={(e) => setAnnouncementTitle(e.target.value)}
-              required
-              />
-              <textarea
-              className='rounded py-2 px-4 border border-black m-2'
-              placeholder='Announcement Content'
-              value={announcementContent}
-              onChange={(e) => setAnnouncementContent(e.target.value)}
-              required
-              />
-              <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400' type='submit'>Submit</button>
-              </form>
-            </Popup> */}
         </div>
 
       </div>

@@ -1,8 +1,7 @@
 #container {
     display: flex;
     flex-direction: column;
-    gap: 10%
-    
+    gap: 10% 
 }
 
 img {
@@ -10,10 +9,33 @@ img {
     align-items: center;
 }
 
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
 #nav1 {
     display: flex;
     flex-direction: column;
-    
+    flex: 1;
 }
 
+.announcement-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 2
+}
+
+.announcements{
+    align-self: flex-start;
+}
+
+
+
+button {
+    display: block;
+    width: auto;
+}
 

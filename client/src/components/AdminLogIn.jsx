@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import JPLogo from "../images/JPLogo.png";
 
@@ -6,12 +6,13 @@ export default function AdminLogIn() {
     const [employeeID, setEmployeeID] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function submitLogIn(event) {
         event.preventDefault();
         const response = await fetch("http://localhost:3000/user/adminLogin", {
             method: "POST",
-            header: {
+            headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify({
@@ -24,9 +25,9 @@ export default function AdminLogIn() {
         if (response.status === 200) {
             const body = await response.json();
             localStorage.setItem("jwt-token", body.token);
-            Navigate('/home');
+            navigate('/home');
         } else {
-            Navigate('/adminSignup');
+            navigate('/adminSignup');
             alert("ID, email and/or password not found! Please sign up for an account.")
         }
     }

@@ -3,6 +3,8 @@ import './styles/Home.css';
 import JPLogo from '../images/JPLogo.png';
 import CreateAnnouncement from './CreateAnnouncement';
 import SignOut from './SignOut';
+import Modal from 'react-modal';
+
 
 export default function Home() {
   // create announcements component, state management, handle creation, & rendering announcements
@@ -11,6 +13,16 @@ export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const [announcementTitle,  setAnnouncementTitle] = useState('');
   const [announcementContent,  setAnnouncementContent] =  useState('')
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
 
 
   const handleCreateAnnouncement = () =>{
@@ -46,8 +58,31 @@ export default function Home() {
             <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
             <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Help</button>
             <SignOut />
-            <button className='block bg-green-300 rounded-full m-8 px-8 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button>
+            {/* <button className='block bg-green-300 rounded-full m-8 px-8 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button> */}
+            <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Create Announcement</button>
           </nav>
+
+          <div>
+          <button onClick={openModal}>Open Modal</button>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={{
+              overlay: {
+                backgroundColor: 'rgba(0, 0, 0, 0.75)'
+              },
+              content: {
+                color: 'lightsteelblue'
+              }
+            }}
+            contentLabel="Example Modal"
+          >
+            <h2>Modal Title</h2>
+            <button onClick={closeModal}>Close</button>
+            <div>Modal Content</div>
+          </Modal>
+        </div>
+
 
           {showForm && (
             <form className='announcement-form' onSubmit={handleAnnouncementSubmit}>
@@ -82,3 +117,4 @@ export default function Home() {
     </div>
   );
 }
+

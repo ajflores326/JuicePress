@@ -13,6 +13,26 @@ export default function Home() {
   const [announcementTitle,  setAnnouncementTitle] = useState('');
   const [announcementContent,  setAnnouncementContent] =  useState('')
 
+  async function CreateAnnouncement(event) {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
+      method: "POST",
+      headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("jwt-token")
+      },
+      body: JSON.stringify({
+          announcementTitle,
+          announcementContent
+      })
+  });
+  if (response.status === 200) {
+  const body = await response.json();
+  alert(`Your announcement: ${announcementTitle} has been saved`)
+  } else {
+      console.log(body.message)
+  }
+  }
+
 
   const handleCreateAnnouncement = () =>{
     setShowForm(true);
@@ -24,10 +44,12 @@ export default function Home() {
       title: announcementTitle,
       content: announcementContent,
     };
+    
     setAnnouncements([...announcements, newAnnouncement]);
     setShowForm(false);
     setAnnouncementTitle('');
     setAnnouncementContent('');
+    CreateAnnouncement()
   };
 
   // const [hasRender, setRender] = useState(false);

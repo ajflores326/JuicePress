@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./styles/LogIn.css";
 import React, { useState } from "react";
 import JPLogo from '../images/JPLogo.png';
+import GreenJuice from '../images/GreenJuice.jpg'
 
 
 

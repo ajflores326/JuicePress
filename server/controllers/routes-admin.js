@@ -1,5 +1,5 @@
 import { Router, request } from "express";
-import Admin from "../models/admin.js.js";
+import Admin from "../models/admin.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 // import validationMiddleware from "../middleware/validationMiddleware.js";
@@ -37,6 +37,8 @@ router.post("/adminSignup", async (request, response) => {
             const token = jwt.sign({ id: admin._id },
                 process.env.SECRET_KEY);
 
+            //TODO: const tokenAdmin
+
             response.send({
                 message: "Admin Successfully added!",
                 token,
@@ -63,6 +65,7 @@ router.post("/adminLogin", async (request, response) => {
     if (admin && await bcryptjs.compare(request.body.password, admin.password) ) {
       // User not found
       const token = jwt.sign({ id: admin._id }, process.env.SECRET_KEY);
+      //TODO: const tokenAdmin
       response.send({
         message: "Success",
         token

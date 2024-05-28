@@ -1,5 +1,5 @@
 import { Router, request } from "express";
-import User from "../models/user.js";
+import Admin from "../models/admin.js.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 // import validationMiddleware from "../middleware/validationMiddleware.js";
@@ -7,42 +7,43 @@ import jwt from "jsonwebtoken";
 const router = Router();
 
 //checks to see if user exists and if not adds new user to database
-router.post("/signup", async (request, response) => {
+router.post("/adminSignup", async (request, response) => {
     try {
         //checking if user exists in database
-        const UserExists = await User.exists({
-            employeeID: request.body.employeeID
+        const AdminExists = await Admin.exists({
+            employeeID: request.body.employeeID,
+            email: request.body.email
         })
 
         //user does not exist in database, create new user
-        if (UserExists === null) {
+        if (AdminExists === null) {
 
             //created variable for hashing password
             const hashedPassword = await bcryptjs.hash(request.body.password, 10);
 
-            const user = new User({
+            const admin = new Admin({
                 firstName: request.body.firstName,
                 lastName: request.body.lastName,
                 password: hashedPassword,
-                employeeID: request.body.employeeID
-
+                employeeID: request.body.employeeID,
+                email: request.body.email
             });
 
 
             //save new user to database
-            await user.save();
+            await admin.save();
 
             //allowing user to access chat server
-            const token = jwt.sign({ id: user._id },
+            const token = jwt.sign({ id: admin._id },
                 process.env.SECRET_KEY);
 
             response.send({
-                message: "User Successfully added!",
+                message: "Admin Successfully added!",
                 token,
-                user
+                admin
             });
         } else {
-            response.send("User already taken!");
+            response.send("Admin already taken!");
         }
     } catch (error) {
         response.send(error.message);
@@ -52,15 +53,16 @@ router.post("/signup", async (request, response) => {
 
 
 // log user in and verify token
-router.post("/login", async (request, response) => {
+router.post("/adminLogin", async (request, response) => {
   try {
-    const user = await User.findOne({ 
-        employeeID: request.body.employeeID
+    const admin = await Admin.findOne({ 
+        employeeID: request.body.employeeID,
+        email: request.body.email
      });
 
-    if (user && await bcryptjs.compare(request.body.password, user.password) ) {
+    if (admin && await bcryptjs.compare(request.body.password, admin.password) ) {
       // User not found
-      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
+      const token = jwt.sign({ id: admin._id }, process.env.SECRET_KEY);
       response.send({
         message: "Success",
         token

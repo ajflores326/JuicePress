@@ -1,17 +1,17 @@
 import { Schema, model } from "mongoose";
 
 const announcementSchema = new Schema({
-    when: {
+    date: {
         type: Date,
         default: Date.now,
     },
-    author: {
+    user: {
         type: String,
     },
-    title: {
+    announcementTitle: {
         type: String,
     },
-    body: {
+    announcementContent: {
         type: String,
     }
 });

@@ -19,7 +19,7 @@ export default function CreateAnnouncement({ setToken }) {
         });
         if (response.status === 200) {
             const body = await response.json();
-            console.log(`Your announcement: ${title} has been saved`)
+            console.log(`Your announcement has been saved!`)
         } else {
             const body = await response.json();
             console.log(body.message)

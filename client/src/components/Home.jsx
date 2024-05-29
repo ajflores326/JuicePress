@@ -9,7 +9,7 @@ import Popup from 'reactjs-popup';
 
 export default function Home() {
   // create announcements component, state management, handle creation, & rendering announcements
-
+  const [token,setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
   const [announcements, setAnnouncements] = useState([])
   const [showForm, setShowForm] = useState(false);
   const [announcementTitle,  setAnnouncementTitle] = useState('');
@@ -137,7 +137,7 @@ export default function Home() {
               <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
 
             {/* </Popup> */} 
-
+            {token ?
             <Popup trigger = {
             <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button>}>
 
@@ -159,6 +159,7 @@ export default function Home() {
               <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400' type='submit'>Submit</button>
             </form>
         </Popup>
+        : "" }
 
 
           </nav>

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import Announcement from "../models/announcements.js";
 import validationMiddleware from "../middleware/validationMiddleware.js";
+import adminValidationMiddleware from "../middleware/adminValidationMiddleware.js";
 
 const router = Router();
 

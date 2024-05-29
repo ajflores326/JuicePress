@@ -48,7 +48,7 @@ export default function Home() {
     };
     
     setAnnouncements([...announcements, newAnnouncement]);
-    setShowForm(false);
+    // setShowForm(false);
     setAnnouncementTitle('');
     setAnnouncementContent('');
     CreateAnnouncement()
@@ -73,8 +73,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-        <div className="content fixed">
-          <nav className='nav1 m-5 font-semibold fixed'>
+        <div className="content relative">
+          <nav className='nav1 m-5 font-semibold'>
             <button className='block bg-green-300 rounded-full m-8 px-9 py-3 hover:bg-green-400'>Profile</button>
             <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
             <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Help</button>
@@ -84,6 +84,7 @@ export default function Home() {
             <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button>}>
 
             <form className='announcement-form' onSubmit={handleAnnouncementSubmit}>
+            
               <input
                 className='rounded py-2 px-4 border border-black m-2'
                 placeholder='Announcement Title'

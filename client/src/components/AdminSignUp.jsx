@@ -11,7 +11,7 @@ export default function AdminSignUp() {
                 <input className="rounded py-2 px-4 border border-black" placeholder="Employee ID" type="number"></input>
                 <input className="rounded py-2 px-4 border border-black" placeholder="Email" type="email"></input>
                 <input className="rounded py-2 px-4 border border-black" placeholder="Password" type="password"></input>
-                <button className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Sign Up</button>
+                <a href="/adminLogin" className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Sign Up</a>
                 <p>Already have an account?</p>
                 <a href="/adminLogin" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Log In</a>
                 <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>

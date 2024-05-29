@@ -10,46 +10,53 @@ import Popup from 'reactjs-popup';
 export default function Home() {
   // create announcements component, state management, handle creation, & rendering announcements
 
-  // const [announcements, setAnnouncements] = useState([])
-  // const [showForm, setShowForm] = useState(false);
-  // const [announcementTitle,  setAnnouncementTitle] = useState('');
-  // const [announcementContent,  setAnnouncementContent] =  useState('')
+  const [announcements, setAnnouncements] = useState([])
+  const [showForm, setShowForm] = useState(false);
+  const [announcementTitle,  setAnnouncementTitle] = useState('');
+  const [announcementContent,  setAnnouncementContent] =  useState('')
 
-
-  // const handleCreateAnnouncement = () =>{
-  //   setShowForm(true);
-  // }
-
-  // const handleAnnouncementSubmit = (e) =>{
-  //   e.preventDefault();
-  //   const newAnnouncement = {
-  //     title: announcementTitle,
-  //     content: announcementContent,
-  //   };
-  //   setAnnouncements([...announcements, newAnnouncement]);
-  //   setShowForm(false);
-  //   setAnnouncementTitle('');
-  //   setAnnouncementContent('');
-  // };
-
-  const [showModal, setShowModal] = React.useState(false);
-  const [announcements, setAnnouncements] = useState([]);
-  const [announcementBody, setAnnouncementBody] = useState(false);
-
-  const handleCreateAnnouncement = () => {
-    setShowModal(true);
+  async function CreateAnnouncement(event) {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
+      method: "POST",
+      headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("jwt-token")
+      },
+      body: JSON.stringify({
+          announcementTitle,
+          announcementContent
+      })
+  });
+  if (response.status === 200) {
+  const body = await response.json();
+  alert(`Your announcement: ${announcementTitle} has been saved`)
+  } else {
+      console.log(body.message)
+  }
   }
 
-  const handleAnnouncementSubmit = (e) => {
+
+  const handleCreateAnnouncement = () =>{
+    setShowForm(true);
+  }
+
+  const handleAnnouncementSubmit = (e) =>{
     e.preventDefault();
     const newAnnouncement = {
-      body: announcementBody
+      title: announcementTitle,
+      content: announcementContent,
     };
-    setShowModal([...announcements, newAnnouncement]);
-    setShowModal(false);
-    setAnnouncementBody('');
-  }
- 
+    setAnnouncements([...announcements, newAnnouncement]);
+    setShowForm(false);
+    setAnnouncementTitle('');
+    setAnnouncementContent('');
+  };
+
+  
+
+  // const [hasRender, setRender] = useState(false);
+
+
   return (
     <div>
       <div>
@@ -77,17 +84,17 @@ export default function Home() {
             <SignOut />
 
 
-
-            <Popup trigger={
+{/*modal exmaple under construction*/} 
+            {/* <Popup trigger={
               <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400' type="button" onClick={handleCreateAnnouncement}>Create Announcement</button>}>
               <div
                 className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
               >
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
                   {/*content*/}
-                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  {/* <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"> */}
                     {/*header*/}
-                    <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                    {/* <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                       <h3 className="text-3xl font-semibold">
                         Create Announcement
                       </h3>
@@ -99,15 +106,15 @@ export default function Home() {
                           ×
                         </span>
                       </button>
-                    </div>
+                    </div> */}
                     {/*body*/}
-                    <div className="relative p-10 flex-auto">
+                    {/* <div className="relative p-10 flex-auto">
                       <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
                         <textarea className='rounded py-10 px-24 border-2 border-gray-400 pl-[14px] pt-[1px] ' placeholder="Type here..."></textarea>
                       </p>
-                    </div>
+                    </div> */}
                     {/*footer*/}
-                    <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                    {/* <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                       <button
                         className="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 hover:bg-white"
                         type="button"
@@ -127,11 +134,11 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
 
-            </Popup>
+            {/* </Popup> */} 
 
-            {/* <Popup trigger = {
+            <Popup trigger = {
             <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button>}>
 
             <form className='announcement-form' onSubmit={handleAnnouncementSubmit}>
@@ -151,7 +158,7 @@ export default function Home() {
               />
               <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400' type='submit'>Submit</button>
             </form>
-        </Popup> */}
+        </Popup>
 
 
           </nav>

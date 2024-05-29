@@ -8,10 +8,10 @@ const announcementSchema = new Schema({
     user: {
         type: String,
     },
-    title: {
+    announcementTitle: {
         type: String,
     },
-    body: {
+    announcementContent: {
         type: String,
     }
 });

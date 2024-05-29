@@ -29,7 +29,7 @@ export default function Home() {
   });
   if (response.status === 200) {
   const body = await response.json();
-  alert(`Your announcement: ${announcementTitle} has been saved`)
+  alert(`Your announcement has been saved`)
   } else {
       console.log(body.message)
   }

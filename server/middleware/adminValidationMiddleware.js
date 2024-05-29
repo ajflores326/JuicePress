@@ -3,8 +3,8 @@ import Admin from "../models/admin.js";
 
 export default async function adminValidationMiddleware(request, response, next) {
     try {
-        const token = request.headers.authorization;
-        if (!token) {
+        const tokenAdmin = request.headers.authorization;
+        if (!tokenAdmin) {
             return response.status(401).json({error: `No authentication token provided` }); 
         }
     

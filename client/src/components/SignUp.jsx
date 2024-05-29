@@ -14,7 +14,7 @@ export default function SignUp({ setToken }) {
     
     async function submitSignUp(event) {
         event.preventDefault(); //stop page from refreshing on submit
-        //send username and password to backend
+        //send employeeID and password to backend
         const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/signup`, {
             method: "POST",
             headers: {

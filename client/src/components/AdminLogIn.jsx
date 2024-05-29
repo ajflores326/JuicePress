@@ -10,7 +10,7 @@ export default function AdminLogIn() {
 
     async function submitLogIn(event) {
         event.preventDefault();
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/adminLogin`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminLogin`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -24,7 +24,7 @@ export default function AdminLogIn() {
 
         if (response.status === 200) {
             const body = await response.json();
-            localStorage.setItem("jwt-token", body.token);
+            localStorage.setItem("jwt-tokenAdmin", body.tokenAdmin);
             navigate('/home');
         } else {
             navigate('/adminSignup');

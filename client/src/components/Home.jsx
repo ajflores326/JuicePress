@@ -81,7 +81,7 @@ export default function Home() {
             <SignOut />
             { token ? 
             <Popup trigger = {
-            <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button>}>
+            <button className='block bg-green-300 rounded-full m-8 px-6 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Post</button>}>
 
             <form className='announcement-form' onSubmit={handleAnnouncementSubmit}>
             

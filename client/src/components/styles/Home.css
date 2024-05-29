@@ -21,18 +21,9 @@ img {
     flex: 1;
 }
 
-.announcement-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 2
-}
-
 .announcements{
     align-self: flex-start;
 }
-
-
 
 button {
     display: flex;

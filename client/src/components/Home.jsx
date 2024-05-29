@@ -48,7 +48,7 @@ export default function Home() {
     };
     
     setAnnouncements([...announcements, newAnnouncement]);
-    // setShowForm(false);
+    setShowForm(true);
     setAnnouncementTitle('');
     setAnnouncementContent('');
     CreateAnnouncement()
@@ -83,7 +83,7 @@ export default function Home() {
             <Popup trigger = {
             <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Announcement</button>}>
 
-            <form className='announcement-form' onSubmit={handleAnnouncementSubmit}>
+            <form className='flex justify-center' onSubmit={handleAnnouncementSubmit}>
             
               <input
                 className='rounded py-2 px-4 border border-black m-2'
@@ -99,7 +99,7 @@ export default function Home() {
                 onChange={(e) => setAnnouncementContent(e.target.value)}
                 required
               />
-              <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400' type='submit'>Submit</button>
+              <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400 font-semibold' type='submit'>Submit</button>
             </form>
         </Popup>
        : "" }

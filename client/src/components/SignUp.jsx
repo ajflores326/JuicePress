@@ -33,7 +33,6 @@ export default function SignUp({ setToken }) {
         if (response.status === 200) {
             const body = await response.json();
             //save jwt to local storage
-            localStorage.setItem("jwt-token", body.token);
             navigate("/")
             alert("User Created!")
             // setToken(body.token);

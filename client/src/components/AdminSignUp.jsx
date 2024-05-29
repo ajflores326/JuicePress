@@ -32,7 +32,6 @@ export default function AdminSignUp({ setToken }) {
         if (response.status === 200) {
             const body = await response.json();
             //save jwt to local storage
-            localStorage.setItem("jwt-tokenAdmin", body.token);
             navigate("/adminLogin")
             alert("New Admin User Created!")
             // setToken(body.token);

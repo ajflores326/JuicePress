@@ -1,4 +1,4 @@
-/*styling for the form*/
+/* styling for the form
 form {
     display: flex;
     flex-direction: column;
@@ -12,16 +12,13 @@ form {
 }
 
 /*changes the color of buttons when hovered over them*/
-button:hover {
+/* button:hover {
 background-color: green;
 justify-content: center;
-}
+} */
 
 /* changes the size of the input text boxes */
-.inputSize {
+/* .inputSize {
     font-size: large;
     width: 50%;
-}
-
-
-
+} */ 

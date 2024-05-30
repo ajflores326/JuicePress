@@ -11,6 +11,7 @@ import SignUp from './components/SignUp.jsx';
 import Home from './components/Home.jsx';
 import AdminLogIn from './components/AdminLogIn.jsx';
 import AdminSignUp from './components/AdminSignUp.jsx';
+import CreateAnnouncement from './components/CreateAnnouncement.jsx';
 
 
 const router = createBrowserRouter([
@@ -33,7 +34,12 @@ const router = createBrowserRouter([
   {
     path: "/adminSignup",
     element: <AdminSignUp></AdminSignUp>
-  }
+  },
+{
+  path: "/createannouncement",
+  element: <CreateAnnouncement></CreateAnnouncement>
+}
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

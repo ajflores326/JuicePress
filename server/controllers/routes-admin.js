@@ -34,14 +34,14 @@ router.post("/adminSignup", async (request, response) => {
             await admin.save();
 
             //allowing user to access chat server
-            const token = jwt.sign({ id: admin._id },
+            const tokenAdmin = jwt.sign({ id: admin._id },
                 process.env.SECRET_KEY);
 
             //TODO: const tokenAdmin
 
             response.send({
                 message: "Admin Successfully added!",
-                token,
+                tokenAdmin,
                 admin
             });
         } else {
@@ -64,11 +64,11 @@ router.post("/adminLogin", async (request, response) => {
 
     if (admin && await bcryptjs.compare(request.body.password, admin.password) ) {
       // User not found
-      const token = jwt.sign({ id: admin._id }, process.env.SECRET_KEY);
+      const tokenAdmin = jwt.sign({ id: admin._id }, process.env.SECRET_KEY);
       //TODO: const tokenAdmin
       response.send({
         message: "Success",
-        token
+        tokenAdmin
       });
     } else {
         response.status(401).send({

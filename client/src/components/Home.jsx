@@ -84,7 +84,7 @@ export default function Home() {
             <SignOut></SignOut>
             {token ?
             <>
-                <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Announcement </button>
+                <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
                 <dialog className='modal-box' id = "my_modal_2" onSubmit={handleAnnouncementSubmit}>
                   <input
                     className='rounded py-2 px-4 border border-black m-2'

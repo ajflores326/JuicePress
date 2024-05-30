@@ -51,15 +51,15 @@ export default function SignUp({ setToken }) {
 
             <form onSubmit={submitSignUp} className='h-screen flex flex-col items-center justify-center border rounded-none space-y-3'>
                 <h1 className="text-4xl font-semibold underline">Sign Up</h1>
-                <input className="rounded py-2 px-4 border border-black" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
-                <button type="submit" className="btn btn-outline">Sign Up</button>
+                <input className="input input-bordered input-success w-full max-w-xs" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}></input>
+                <input className="input input-bordered input-info w-full max-w-xs" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}></input>
+                <input className="input input-bordered input-primary w-full max-w-xs" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
+                <input className="input input-bordered input-secondary w-full max-w-xs" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                <button type="submit" className="btn bg-accent text-black hover:bg-secondary">Sign Up</button>
                 <p>Already have an account?</p>
-                <a href="/" className="btn btn-outline">Log In</a>
+                <a href="/" className="btn bg-accent text-black hover:bg-secondary">Log In</a>
                 <p>Have a Juice Press Email?</p>
-                <a href="/adminSignup" className="btn btn-outline">Click Here</a>
+                <a href="/adminSignup" className="btn bg-accent text-black hover:bg-secondary">Click Here</a>
                 <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
             </form>
 

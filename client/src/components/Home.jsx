@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/Home.css';
+// import './styles/Home.css';
 import JPLogo from '../images/JPLogo.png';
 import CreateAnnouncement from './CreateAnnouncement';
 import SignOut from './SignOut';
@@ -9,44 +9,44 @@ import Popup from 'reactjs-popup';
 
 export default function Home() {
   // create announcements component, state management, handle creation, & rendering announcements
-  const [token,setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
+  const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
   const [announcements, setAnnouncements] = useState([])
   const [showForm, setShowForm] = useState(false);
-  const [announcementTitle,  setAnnouncementTitle] = useState('');
-  const [announcementContent,  setAnnouncementContent] =  useState('')
- 
+  const [announcementTitle, setAnnouncementTitle] = useState('');
+  const [announcementContent, setAnnouncementContent] = useState('')
+
   async function CreateAnnouncement(event) {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
       method: "POST",
       headers: {
-          "content-type": "application/json",
-          authorization: localStorage.getItem("jwt-token")
+        "content-type": "application/json",
+        authorization: localStorage.getItem("jwt-token")
       },
       body: JSON.stringify({
-          announcementTitle,
-          announcementContent
+        announcementTitle,
+        announcementContent
       })
-  });
-  if (response.status === 200) {
-  const body = await response.json();
-  alert(`Your announcement has been saved`)
-  } else {
+    });
+    if (response.status === 200) {
+      const body = await response.json();
+      alert(`Your announcement has been saved`)
+    } else {
       console.log(body.message)
-  }
+    }
   }
 
 
-  const handleCreateAnnouncement = () =>{
+  const handleCreateAnnouncement = () => {
     setShowForm(true);
   }
 
-  const handleAnnouncementSubmit = (e) =>{
+  const handleAnnouncementSubmit = (e) => {
     e.preventDefault();
     const newAnnouncement = {
       title: announcementTitle,
       content: announcementContent,
     };
-    
+
     setAnnouncements([...announcements, newAnnouncement]);
     setShowForm(true);
     setAnnouncementTitle('');
@@ -65,51 +65,55 @@ export default function Home() {
         <div className='flex justify-center text-4xl'>
           <h2 className='font-bold'>Important Announcements</h2>
         </div>
-          <div className='flex flex-col items-center announcements'>
-            {announcements.map((announcement, index) => (
-              <div key={index} className='m-4 p-4 border border-green-300 rounded-lg w-1/2'>
-                <h3 className='font-bold text-xl'>{announcement.title}</h3>
-                <p>{announcement.content}</p>
-              </div>
-            ))}
-          </div>
-        <div className="content relative">
-          <nav className='nav1 m-5 font-semibold'>
-            <button className='block bg-green-300 rounded-full m-8 px-9 py-3 hover:bg-green-400'>Profile</button>
-            <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
-            <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Help</button>
-            <SignOut />
-            { token ? 
-            <Popup trigger = {
-            <button className='block bg-green-300 rounded-full m-8 px-6 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Post</button>}>
-
-            <form className='flex justify-center' onSubmit={handleAnnouncementSubmit}>
-            
-              <input
-                className='rounded py-2 px-4 border border-black m-2'
-                placeholder='Announcement Title'
-                value={announcementTitle}
-                onChange={(e) => setAnnouncementTitle(e.target.value)}
-                required
-              />
-              <textarea
-                className='rounded py-2 px-4 border border-black m-2'
-                placeholder='Announcement Content'
-                value={announcementContent}
-                onChange={(e) => setAnnouncementContent(e.target.value)}
-                required
-              />
-              <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400 font-semibold' type='submit'>Submit</button>
-            </form>
-        </Popup>
-       : "" }
-          </nav>
+        <div className='flex flex-col items-center announcements'>
+          {announcements.map((announcement, index) => (
+            <div key={index} className='m-4 btn-outline rounded-lg w-1/2'>
+              <h3 className='font-bold text-xl'>{announcement.title}</h3>
+              <p>{announcement.content}</p>
+            </div>
+          ))}
         </div>
+        <div className="content relative">
+          <nav className='nav1 m-16 font-semibold space-y-7'>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary '>Profile</button>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
+            <SignOut />
+            {token ?
+              <Popup trigger={
+                <a href='/createannouncement' className='btn bg-primary rounded-full hover:bg-secondary font-semibold'>Create Post</a>}>
 
+                <form className='flex-row' onSubmit={handleAnnouncementSubmit}>
+
+                  <input
+                    className='rounded py-2 px-4 border border-black m-2'
+                    placeholder='Announcement Title'
+                    value={announcementTitle}
+                    onChange={(e) => setAnnouncementTitle(e.target.value)}
+                    required
+                  />
+                  <textarea
+                    className='block rounded py-2 px-4 border border-black m-2'
+                    placeholder='Announcement Content'
+                    value={announcementContent}
+                    onChange={(e) => setAnnouncementContent(e.target.value)}
+                    required
+                  />
+                  <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold' type='submit'>Submit</button>
+                </form>
+              </Popup>
+              : ""}
+          </nav>
+
+          
+
+        </div>
       </div>
+
     </div>
+
   );
 }
-  
+
 
 

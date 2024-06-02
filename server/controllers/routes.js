@@ -1,6 +1,8 @@
 import { Router } from "express";
 import Announcement from "../models/announcements.js";
 import validationMiddleware from "../middleware/validationMiddleware.js";
+import userValidationMiddleware from "../middleware/validationMiddleware.js";
+import User from "../models/user.js"
 
 const router = Router();
 
@@ -26,5 +28,6 @@ router.post("/createannouncement", async (request, response) => {
 router.post("/", validationMiddleware, (req, res) => {
     res.send('Validation middleware successful');
 });
+
 
 export default router;

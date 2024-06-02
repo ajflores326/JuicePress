@@ -5,7 +5,7 @@ import userRouter from "./controllers/routes-user.js";
 import adminRouter from "./controllers/routes-admin.js";
 import mongoose from "mongoose";
 import cors from "cors";
-import serverless from 'serverless-http';
+// import serverless from 'serverless-http';
 
 
 const app = express();
@@ -15,7 +15,7 @@ app.use("/", router);
 app.use("/user", userRouter)
 app.use("/admin", adminRouter)
 
-export const handler = serverless(app)
+// export const handler = serverless(app)
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log(`Server is now listening on port ${process.env.SERVER_PORT}`)

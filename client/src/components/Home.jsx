@@ -7,6 +7,7 @@ import SignOut from './SignOut';
 import Popup from 'reactjs-popup';
 import admin from '../../../server/models/admin';
 import user from "../../../server/models/user"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -20,6 +21,11 @@ export default function Home() {
   const [announcementContent, setAnnouncementContent] = useState('')
   const [user, setUser] = useState("")
   const [admin, setAdmin] = useState("")
+  const navigate = useNavigate();
+
+  function navigateProfile() {
+    navigate('/profile')
+  }
 
 
   async function CreateAnnouncement(event) {
@@ -147,7 +153,7 @@ export default function Home() {
         </div>
         <div className="content relative">
           <nav className='nav1 m-16 font-semibold space-y-7'>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary '>Profile</button>
+            <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary'>Profile</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
             <SignOut></SignOut>

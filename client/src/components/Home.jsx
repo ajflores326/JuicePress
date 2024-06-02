@@ -151,7 +151,7 @@ export default function Home() {
     <div>
       <div>
         <div className='flex-row px-7 m-3 py-3'>
-          <img src={JPLogo} style={{ position: 'fixed', left: 40, top: '15%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="10%" height="10%"></img>
+          <img src={JPLogo} style={{ position: 'fixed', left: 40, top: '10%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="10%" height="10%"></img>
         </div>
         
         {token ?
@@ -160,80 +160,32 @@ export default function Home() {
         <div className='flex justify-center text-4xl'>
           <h2 className='font-bold'>Important Announcements</h2>
         </div>
-        
-         
-         <div className='flex flex-col items-center announcements p-4 border-secondary'>
+
+        <div className='flex flex-col items-center announcements p-4 border-secondary'>
           {announcements.map((announcement, index) => (
             <div key={index} className="card lg:card-side bg-base-100 shadow-xl m-4 w-1/2">
-              {announcement.image && <figure className="flex-shrink-0 w-1/3"><img src={announcement.image} alt="Announcement" /></figure>}
-              {announcement.video && <figure className="flex-shrink-0 w-1/3"><video controls src={announcement.video}></video></figure>}
+              {announcement.image && (
+                <figure className="flex-shrink-0 w-1/3">
+                  <img src={announcement.image} alt="Announcement" className="object-cover w-full h-48" />
+                </figure>
+              )}
+              {announcement.video && (
+                <figure className="flex-shrink-0 w-1/3">
+                  <video controls src={announcement.video} className="object-cover w-full h-48"></video>
+                </figure>
+              )}
               <div className="card-body">
                 <h3 className='font-bold text-xl'>{announcement.title}</h3>
                 <p>{announcement.content}</p>
                 <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p> {/* Display timestamp */}
               </div>
-
-        <div className='flex flex-col items-center announcements'>
-          {announcements.map((announcement, index) => (
-            <div key={index} className='m-4 p-4 border border-green-300 rounded-lg w-1/2'>
-
-              <h3 className='font-bold text-xl'>{announcement.title}</h3>
-              <p>{announcement.content}</p>
-
             </div>
           ))}
         </div>
 
+        
         <div className="content relative">
-
-          <nav className='nav1 m-16 font-semibold space-y-7' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Profile</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
-            <SignOut />
-            {token && (
-              <>
-                <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={handleCreateAnnouncement}>Create Post</button>
-                <dialog className='modal-box' id="my_modal_2">
-                  <form onSubmit={handleAnnouncementSubmit}>
-
-                    <input
-                      className='rounded py-2 px-4 border border-black m-2'
-                      placeholder='Announcement Title'
-                      value={announcementTitle}
-                      onChange={(e) => setAnnouncementTitle(e.target.value)}
-                      required
-                    />
-
-                    <textarea
-                      className='block rounded py-2 px-4 border border-black m-2'
-                      placeholder='Announcement Content'
-                      value={announcementContent}
-                      onChange={(e) => setAnnouncementContent(e.target.value)}
-                      required
-                    />
-
-                    //** drop image file */
-                     <input
-                      className='block rounded py-2 px-4 border border-black m-2'
-                      type='file'
-                      accept='image/*'
-                      onChange={(e) => setAnnouncementImage(e.target.files[0])}
-                     />
-
-                    //** drop video file */
-                     <input
-                      className='block rounded py-2 px-4 border border-black m-2'
-                      type='file'
-                      accept='video/*'
-                      onChange={(e) => setAnnouncementVideo(e.target.files[0])}
-                     />
-
-                    <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold' type='submit'>Submit</button>
-                  </form>
-                  <button className='btn bg-secondary rounded-full px-9 py-3 hover:bg-primary font-semibold' onClick={() => document.getElementById('my_modal_2').close()}>Close</button>
-
-          <nav className='nav1 m-16 font-semibold space-y-7'>
+        <nav className='nav1 m-16 font-semibold space-y-7' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
             <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary'>Profile</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
@@ -257,21 +209,34 @@ export default function Home() {
                     onChange={(e) => setAnnouncementContent(e.target.value)}
                     required
                   />
+                  <p>Image</p>
+                    <input
+                      className='block rounded py-2 px-4 border border-black m-2'
+                      type='file'
+                      accept='image/*'
+                      onChange={(e) => setAnnouncementImage(e.target.files[0])}
+                     />
+                  <p>Video</p>
+                     <input
+                      className='block rounded py-2 px-4 border border-black m-2'
+                      type='file'
+                      accept='video/*'
+                      onChange={(e) => setAnnouncementVideo(e.target.files[0])}
+                     />
                 <form method ="dialog">
                   <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold'onClick={handleAnnouncementSubmit}>Submit</button>
                     </form>
-
                 </dialog>
               </>
-            )}
+              : ""}
           </nav>
+
+          
+
         </div>
       </div>
+
     </div>
+
   );
 }
-
-
-
-
-

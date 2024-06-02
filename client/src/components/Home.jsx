@@ -146,19 +146,6 @@ export default function Home() {
           ))}
         </div>
         <div className="content relative">
-
-          <nav className='nav1 m-5 font-semibold'>
-            <button className='block bg-green-300 rounded-full m-8 px-9 py-3 hover:bg-green-400'>Profile</button>
-            <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
-            <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Help</button>
-            <SignOut />
-            {token ?
-              <Popup trigger={
-                <button className='block bg-green-300 rounded-full m-8 px-6 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Post</button>}>
-
-                <form className='flex justify-center' onSubmit={handleAnnouncementSubmit}>
-
-
           <nav className='nav1 m-16 font-semibold space-y-7'>
             <button className='block btn rounded-full bg-primary hover:bg-secondary '>Profile</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
@@ -175,28 +162,19 @@ export default function Home() {
                     value={announcementTitle}
                     onChange={(e) => setAnnouncementTitle(e.target.value)}
                     required
-
                   />
                   <textarea
                     className='rounded py-2 px-4 border border-black m-2'
-
                     placeholder='Announcement Content'
                     value={announcementContent}
                     onChange={(e) => setAnnouncementContent(e.target.value)}
                     required
-
                   />
-                  <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400 font-semibold' type='submit'>Submit</button>
-                </form>
-              </Popup>
-
-                    />
                 <form method ="dialog">
                   <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold'onClick={handleAnnouncementSubmit}>Submit</button>
                     </form>
                 </dialog>
               </>
-
               : ""}
           </nav>
 

@@ -26,6 +26,9 @@ export default function Home() {
   const navigate = useNavigate();
 
 
+  function navigateProfile() {
+    navigate('/profile')
+  }
 
 
   async function createAnnouncement() {
@@ -35,10 +38,6 @@ export default function Home() {
     formData.append("timestamp", new Date().toISOString())
     if(announcementImage) formData.append("image", announcementImage);
     if(announcementVideo) formData.append("video", announcementVideo);
-
-  function navigateProfile() {
-    navigate('/profile')
-  }
 
 
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {

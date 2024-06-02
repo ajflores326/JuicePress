@@ -3,6 +3,7 @@ import Admin from "../models/admin.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 // import validationMiddleware from "../middleware/validationMiddleware.js";
+import adminValidationMiddleware from "../middleware/adminValidationMiddleware.js"
 
 const router = Router();
 
@@ -80,4 +81,14 @@ router.post("/adminLogin", async (request, response) => {
   }
 });
 
+//displaying admin username and admin pic on home pg after user logs in
+router.get("/adminUsername", adminValidationMiddleware, (request, response) => {
+  try {
+
+    response.send(request.admin)
+
+  } catch (error) {
+    response.status(500).send({ message: err.message })
+  }
+});
 export default router;

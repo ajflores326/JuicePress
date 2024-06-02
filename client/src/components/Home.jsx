@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-// import './styles/Home.css';
+
+import React, { useState, useEffect } from 'react';
+import './styles/Home.css';
 import JPLogo from '../images/JPLogo.png';
 import CreateAnnouncement from './CreateAnnouncement';
 import SignOut from './SignOut';
 import Popup from 'reactjs-popup';
+import admin from '../../../server/models/admin';
+import user from "../../../server/models/user"
+
 
 
 
@@ -11,9 +15,12 @@ export default function Home() {
   // create announcements component, state management, handle creation, & rendering announcements
   const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
   const [announcements, setAnnouncements] = useState([])
-  const [showForm, setShowForm] = useState();
+  const [showForm, setShowForm] = useState(false);
   const [announcementTitle, setAnnouncementTitle] = useState('');
   const [announcementContent, setAnnouncementContent] = useState('')
+  const [user, setUser] = useState("")
+  const [admin, setAdmin] = useState("")
+
 
   async function CreateAnnouncement(event) {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
@@ -57,6 +64,62 @@ export default function Home() {
     
   };
 
+  async function getUsername() {
+
+    //using fetch to obtain user last name and first name from database
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
+      method: "GET",
+      headers: {
+        "authorization": localStorage.getItem("jwt-token")
+        
+      },
+
+    });
+
+    //getting user object
+    if (response.status === 200) {
+      const body = await response.json();
+      setUser(body)
+
+    } else {
+      console.log("error");
+    }
+  }
+
+  //once user is logged in first and last name of user will be displayed on home pg
+  useEffect(() => {
+    getUsername()
+  }, [])
+
+  async function getAdminUsername() {
+
+    //using fetch to obtain user last name and first name from database
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
+      method: "GET",
+      headers: {
+        "authorization": localStorage.getItem("jwt-tokenAdmin")
+        
+      },
+
+    });
+
+    //getting user object
+    if (response.status === 200) {
+      const body = await response.json();
+      setAdmin(body)
+
+    } else {
+      console.log("error");
+    }
+  }
+
+  //once user is logged in first and last name of user will be displayed on home pg
+  useEffect(() => {
+    getAdminUsername()
+  }, [])
+
+
+
   // const [hasRender, setRender] = useState(false);
 
   return (
@@ -65,18 +128,37 @@ export default function Home() {
         <div className='flex-row px-7 m-3 py-3'>
           <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
         </div>
+        
+        {token ?
+        <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider  ">Welcome "{admin.firstName} {admin.lastName}!"</h1>
+        :<h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider ">Welcome "{user.firstName} {user.lastName}!"</h1>}
         <div className='flex justify-center text-4xl'>
           <h2 className='font-bold'>Important Announcements</h2>
         </div>
-        <div className='flex flex-col items-center announcements p-4 border-secondary'>
+
+        <div className='flex flex-col items-center announcements'>
           {announcements.map((announcement, index) => (
-            <div key={index} className='m-4 btn-outline rounded-lg w-1/2'>
+            <div key={index} className='m-4 p-4 border border-green-300 rounded-lg w-1/2'>
+
               <h3 className='font-bold text-xl'>{announcement.title}</h3>
               <p>{announcement.content}</p>
             </div>
           ))}
         </div>
         <div className="content relative">
+
+          <nav className='nav1 m-5 font-semibold'>
+            <button className='block bg-green-300 rounded-full m-8 px-9 py-3 hover:bg-green-400'>Profile</button>
+            <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
+            <button className='block bg-green-300 rounded-full m-8 px-11 py-3 hover:bg-green-400'>Help</button>
+            <SignOut />
+            {token ?
+              <Popup trigger={
+                <button className='block bg-green-300 rounded-full m-8 px-6 py-3 hover:bg-green-400' onClick={handleCreateAnnouncement}>Create Post</button>}>
+
+                <form className='flex justify-center' onSubmit={handleAnnouncementSubmit}>
+
+
           <nav className='nav1 m-16 font-semibold space-y-7'>
             <button className='block btn rounded-full bg-primary hover:bg-secondary '>Profile</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
@@ -86,25 +168,35 @@ export default function Home() {
             <>
                 <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
                 <dialog className='modal-box' id = "my_modal_2" onSubmit={handleAnnouncementSubmit}>
+
                   <input
                     className='rounded py-2 px-4 border border-black m-2'
                     placeholder='Announcement Title'
                     value={announcementTitle}
                     onChange={(e) => setAnnouncementTitle(e.target.value)}
                     required
-                    />
+
+                  />
                   <textarea
-                    className='block rounded py-2 px-4 border border-black m-2'
+                    className='rounded py-2 px-4 border border-black m-2'
+
                     placeholder='Announcement Content'
                     value={announcementContent}
                     onChange={(e) => setAnnouncementContent(e.target.value)}
                     required
+
+                  />
+                  <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400 font-semibold' type='submit'>Submit</button>
+                </form>
+              </Popup>
+
                     />
                 <form method ="dialog">
                   <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold'onClick={handleAnnouncementSubmit}>Submit</button>
                     </form>
                 </dialog>
               </>
+
               : ""}
           </nav>
 

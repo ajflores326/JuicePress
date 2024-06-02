@@ -193,7 +193,8 @@ export default function Home() {
             {token ?
             <>
                 <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
-                <dialog className='modal-box' id = "my_modal_2" onSubmit={handleAnnouncementSubmit}>
+                <dialog className='modal-box' id = "my_modal_2">
+                <form onSubmit={handleAnnouncementSubmit}>
 
                   <input
                     className='rounded py-2 px-4 border border-black m-2'
@@ -223,10 +224,10 @@ export default function Home() {
                       accept='video/*'
                       onChange={(e) => setAnnouncementVideo(e.target.files[0])}
                      />
-                <form method ="dialog">
-                  <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold'onClick={handleAnnouncementSubmit}>Submit</button>
-                    </form>
-                </dialog>
+               <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold' type='submit'>Submit</button>
+                  </form>
+                  <button className='btn bg-secondary rounded-full px-9 py-3 hover:bg-primary font-semibold' onClick={() => document.getElementById('my_modal_2').close()}>Close</button>
+                  </dialog>
               </>
               : ""}
           </nav>

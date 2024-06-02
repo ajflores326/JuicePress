@@ -6,23 +6,35 @@ import User from "../models/user.js"
 
 const router = Router();
 
-router.get("/", (request,response) => {
-    response.send("Server connected")
+//displays all announcements on homepage
+router.get("/", async (request,response) => {
+    try {
+        const allAnnouncements = await Announcement.find({});
+        response.send(allAnnouncements)
+    } catch (err) {
+        response.status(500).send({
+            message: err.message
+        })
+    }
 })
 
+//creates an announcement
 router.post("/createannouncement", async (request, response) => {
-    
-    const announcement = new Announcement({
-        announcementTitle: request.body.announcementTitle,
-        announcementContent: request.body.announcementContent
-        
-    })
-
-    await announcement.save();
-
-    response.send("Announcement posted")
-
-})
+    try {
+        const announcement = new Announcement({
+            announcementTitle: request.body.announcementTitle,
+            announcementContent: request.body.announcementContent
+        });
+        await announcement.save();
+        response.send({
+            message: "Announcement was successfully posted."
+        })
+    } catch (err) {
+        response.status(500).send({
+            message: error.message
+        });
+    }
+});
 
 //verify user token 
 router.post("/", validationMiddleware, (req, res) => {

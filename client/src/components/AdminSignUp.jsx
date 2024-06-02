@@ -42,16 +42,16 @@ export default function AdminSignUp({ setToken }) {
     }
     return (
         <div>
-            <form onSubmit={submitSignUp} className='h-screen flex flex-col items-center justify-center border rounded-none'>
-                <h1 className="text-4xl font-semibold underline text-green-400">Admin Sign Up</h1>
-                <input className="rounded py-2 px-4 border border-black" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
-                <button className="block bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded" type = "submit">Sign Up</button>
+            <form onSubmit={submitSignUp} className='h-screen flex flex-col items-center justify-center border rounded-none space-y-5'>
+                <h1 className="text-4xl font-semibold underline">Admin Sign Up</h1>
+                <input className="input input-bordered input-success w-full max-w-xs" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}></input>
+                <input className="input input-bordered input-info w-full max-w-xs" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}></input>
+                <input className="input input-bordered input-primary w-full max-w-xs" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
+                <input className="input input-bordered input-accent w-full max-w-xs" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
+                <input className="input input-bordered input-secondary w-full max-w-xs" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                <button className="btn bg-accent text-black hover:bg-secondary" type = "submit">Sign Up</button>
                 <p>Already have an account?</p>
-                <a href="/adminLogin" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded">Log In</a>
+                <a href="/adminLogin" className="btn bg-accent text-black hover:bg-secondary">Log In</a>
                 <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
             </form>
         </div>

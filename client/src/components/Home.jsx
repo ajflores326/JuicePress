@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './styles/Home.css';
 import JPLogo from '../images/JPLogo.png';
@@ -19,6 +20,7 @@ export default function Home() {
   const [announcementContent, setAnnouncementContent] = useState('')
   const [user, setUser] = useState("")
   const [admin, setAdmin] = useState("")
+
 
   async function CreateAnnouncement(event) {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
@@ -43,6 +45,8 @@ export default function Home() {
 
   const handleCreateAnnouncement = () => {
     setShowForm(true);
+    document.getElementById('my_modal_2').showModal()
+    
   }
 
   const handleAnnouncementSubmit = (e) => {
@@ -57,6 +61,7 @@ export default function Home() {
     setAnnouncementTitle('');
     setAnnouncementContent('');
     CreateAnnouncement()
+    
   };
 
   async function getUsername() {
@@ -130,15 +135,18 @@ export default function Home() {
         <div className='flex justify-center text-4xl'>
           <h2 className='font-bold'>Important Announcements</h2>
         </div>
+
         <div className='flex flex-col items-center announcements'>
           {announcements.map((announcement, index) => (
             <div key={index} className='m-4 p-4 border border-green-300 rounded-lg w-1/2'>
+
               <h3 className='font-bold text-xl'>{announcement.title}</h3>
               <p>{announcement.content}</p>
             </div>
           ))}
         </div>
         <div className="content relative">
+
           <nav className='nav1 m-5 font-semibold'>
             <button className='block bg-green-300 rounded-full m-8 px-9 py-3 hover:bg-green-400'>Profile</button>
             <button className='block bg-green-300 rounded-full m-8 px-10 py-3 hover:bg-green-400'>Slack</button>
@@ -150,29 +158,55 @@ export default function Home() {
 
                 <form className='flex justify-center' onSubmit={handleAnnouncementSubmit}>
 
+
+          <nav className='nav1 m-16 font-semibold space-y-7'>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary '>Profile</button>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
+            <SignOut></SignOut>
+            {token ?
+            <>
+                <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
+                <dialog className='modal-box' id = "my_modal_2" onSubmit={handleAnnouncementSubmit}>
+
                   <input
                     className='rounded py-2 px-4 border border-black m-2'
                     placeholder='Announcement Title'
                     value={announcementTitle}
                     onChange={(e) => setAnnouncementTitle(e.target.value)}
                     required
+
                   />
                   <textarea
                     className='rounded py-2 px-4 border border-black m-2'
+
                     placeholder='Announcement Content'
                     value={announcementContent}
                     onChange={(e) => setAnnouncementContent(e.target.value)}
                     required
+
                   />
                   <button className='bg-green-300 rounded-full px-9 py-3 hover:bg-green-400 font-semibold' type='submit'>Submit</button>
                 </form>
               </Popup>
+
+                    />
+                <form method ="dialog">
+                  <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold'onClick={handleAnnouncementSubmit}>Submit</button>
+                    </form>
+                </dialog>
+              </>
+
               : ""}
           </nav>
-        </div>
 
+          
+
+        </div>
       </div>
+
     </div>
+
   );
 }
 

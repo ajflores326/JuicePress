@@ -1,5 +1,5 @@
 /* styling for the form*/
-form {
+/* form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,14 +10,14 @@ form {
     background-color: lightgray;
     padding: 15px;
     
-}
+} */
 
 /*changes the color of buttons when hovered over them*/
-button:hover {
+/* button:hover {
     background-color: green;
-}
+} */
 
 /* changes the size of the input text boxes */
-.inputSize {
+/* .inputSize {
     font-size: large;
-}
+} */

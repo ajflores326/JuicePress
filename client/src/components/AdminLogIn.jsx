@@ -34,14 +34,14 @@ export default function AdminLogIn() {
 
     return (
         <div>
-            <form className="h-screen flex flex-col items-center justify-center border rounded-none" onSubmit={submitLogIn}>
-                <h1 className="text-4xl font-semibold underline text-green-400">Admin Log In</h1>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
-                <input className="rounded py-2 px-4 border border-black" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
-                <button className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded" type="Submit">Log In</button>
+            <form className="h-screen flex flex-col items-center justify-center border rounded-none space-y-7" onSubmit={submitLogIn}>
+                <h1 className="text-4xl font-semibold underline">Admin Log In</h1>
+                <input className="input input-bordered input-primary w-full max-w-xs" placeholder="Employee ID" type="number" onChange={(e) => setEmployeeID(e.target.value)}></input>
+                <input className="input input-bordered input-accent w-full max-w-xs" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
+                <input className="input input-bordered input-secondary w-full max-w-xs" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                <button className="btn bg-accent text-black hover:bg-secondary" type="Submit">Log In</button>
                 <p>Don't have an account?</p>
-                <a href="/adminSignup" className="bg-transparent hover:bg-green-400 text-green-400 font-semibold hover:text-white py-2 px-4 border-2 border-green-300 hover:border-transparent rounded"> Sign Up</a>
+                <a href="/adminSignup" className="btn bg-accent text-black hover:bg-secondary"> Sign Up</a>
                 <img src={JPLogo} alt="Juice Press Logo" width="10%" height="10%"></img>
             </form>
         </div>

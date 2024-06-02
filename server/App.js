@@ -15,6 +15,10 @@ app.use("/", router);
 app.use("/user", userRouter)
 app.use("/admin", adminRouter)
 
+
+
+// app.use("/createannouncement", announcementRouter)
+
 // export const handler = serverless(app)
 
 app.listen(process.env.SERVER_PORT, () => {

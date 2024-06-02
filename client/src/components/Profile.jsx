@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import user from '../../../server/models/user';
 import admin from '../../../server/models/admin';
 import { useNavigate } from "react-router-dom";
+import juice from '../images/GreenJuice.jpg'
 
 export default function Profile() {
     const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
@@ -71,8 +72,9 @@ export default function Profile() {
     
     return (
         <div>
-        <h1 className = "flex justify-left p-20"> PICTURE PLACEHOLDER </h1>
-        <button className='flex justify-left block btn rounded-full bg-primary hover:bg-secondary' onClick = {() => navigateBack()}> BACK </button>
+        <button className='flex justify-left p-5 m-10 block btn rounded-full bg-primary hover:bg-secondary' onClick = {() => navigateBack()}> BACK </button>
+        <img className = "flex justify-left m-10" src = {juice} />
+        {/* <h1 className = "flex justify-left p-20"> PICTURE PLACEHOLDER </h1> */}
      {token ?
         <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">Welcome "{admin.firstName} {admin.lastName}!"</h1>
         :<h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">Welcome "{user.firstName} {user.lastName}!"</h1>}

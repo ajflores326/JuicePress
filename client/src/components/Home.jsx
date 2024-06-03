@@ -8,7 +8,7 @@ import admin from '../../../server/models/admin';
 import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
 import {formatDistanceToNow, parseISO} from "date-fns"
-
+import DateDisplay from './DateDisplay'; 
 
 
 
@@ -159,6 +159,8 @@ export default function Home() {
         <div className='flex justify-center text-4xl'>
           <h2 className='font-bold'>Important Announcements</h2>
         </div>
+
+        <DateDisplay />  
 
         <div className='flex flex-col items-center announcements p-4 border-secondary'>
           {announcements.map((announcement, index) => (

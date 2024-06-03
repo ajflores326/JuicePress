@@ -72,12 +72,13 @@ export default function Profile() {
     
     return (
         <div>
-        <button className='flex justify-left p-5 m-10 block btn rounded-full bg-primary hover:bg-secondary' onClick = {() => navigateBack()}> BACK </button>
-        <img className = "flex justify-left m-10" src = {juice} />
+        <button className='flex justify-left p-5 m-10 py-4 btn rounded-full bg-primary hover:bg-secondary' onClick = {() => navigateBack()}> BACK </button>
+        {/* <img className = "flex justify-left m-10" src = {juice} /> */}
         {/* <h1 className = "flex justify-left p-20"> PICTURE PLACEHOLDER </h1> */}
      {token ?
-        <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">Welcome "{admin.firstName} {admin.lastName}!"</h1>
-        :<h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">Welcome "{user.firstName} {user.lastName}!"</h1>}
+        <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">"{admin.firstName} {admin.lastName}, Welcome to your profile!"</h1>
+        :<h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">"{user.firstName} {user.lastName},  Welcome to your profile!!"</h1>}
+        <img className = "flex justify-left m-10" src = {juice} />
     {token ? 
         <h1 className = "flex justify-left p-5 font-bold text-2xl text-violet-600 tracking-wider">Employee ID: {admin.employeeID} </h1>
         : <h1 className="flex justify-left p-5 font-bold text-2xl text-violet-600 tracking-wider">Employee ID: {user.employeeID} </h1> }
@@ -86,19 +87,9 @@ export default function Profile() {
         : ""}
         <h1 className = "flex justify-left p-5 font-bold text-2xl text-primary tracking-wider"> Position: </h1>
         <h1 className = "flex justify-left p-5 font-bold text-2xl text-secondary tracking-wider"> Store Number: </h1>
+       
         </div>
-        // <div>
-        //     <form>
-        //     {/* a possible photo icon  */}
-        //     <input placeholder='First Name'>First Name:</input>
-        //     <input placeholder='Last Name'>Last Name:</input>
-        //     <input placeholder='Empolyee ID'> Empolyee ID:</input>
-        //     {/* email field is only for admin account */}
-        //     <input placeholder='Email'>Email:</input>
-        //     <input placeholder='Position'>Position:</input>
-        //     <input placeholder='Store Number'>Store Number:</input>
-        //     <input placeholder='Date of Birth'>Date of Birth:</input>
-        //     </form>
-        // </div>
+        
+        
     )
 }

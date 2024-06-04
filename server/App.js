@@ -15,6 +15,7 @@ import cors from "cors";
 // import serverless from 'serverless-http';
 import { access } from 'fs';
 import { request } from 'http';
+import { Prisma } from '@prisma/client';
 
 // import { PutObjectCommand } from '@aws-sdk/client-s3';--->MO
 // dotenv.config()--->MO
@@ -66,9 +67,14 @@ app.use("/admin", adminRouter)
 //     const command = new PutObjectCommand(params)
 
 //     await s3.send(command)
-  
+
 //storing post data into database ex: caption, pic 
-        const post = await pa
+// const post = await prisma.posts.create({
+//     data: {
+//         caption: req.body.caption,
+//         imageName: imageName
+//     }
+// })
 
 //     res.send({})
 // })---->MO

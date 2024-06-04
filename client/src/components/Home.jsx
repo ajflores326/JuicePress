@@ -156,13 +156,18 @@ export default function Home() {
         </div>
         
         {token ?
-        <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider  ">"Welcome {admin.firstName} {admin.lastName}!"</h1>
-        :<h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider ">"Welcome {user.firstName} {user.lastName}!"</h1>}
+        <h1 className="flex justify-center font-bold text-2xl text-violet-600 tracking-wider  ">"Welcome {admin.firstName} {admin.lastName}!"</h1>
+        :<h1 className="flex justify-center font-bold text-2xl text-violet-600 tracking-wider ">"Welcome {user.firstName} {user.lastName}!"</h1>}
+       
+       <div>
+       <p className='flex justify-center text-xl font-semibold my-3'><DateDisplay /> </p>
+       </div>
+       
         <div className='flex justify-center text-4xl'>
-          <h2 className='font-bold'>Important Announcements</h2>
+          <h2 className='block font-bold'>Important Announcements</h2>
         </div>
 
-        <DateDisplay />  
+         
         {/* <AllAnnouncements> </AllAnnouncements> */}
 
         <div className='flex flex-col items-center announcements p-4 border-secondary'>

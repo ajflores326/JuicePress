@@ -9,7 +9,7 @@ import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
 import {formatDistanceToNow, parseISO} from "date-fns"
 import DateDisplay from './DateDisplay'; 
-
+// import AllAnnouncements  from './AllAnnouncements'
 
 
 export default function Home() {
@@ -47,6 +47,8 @@ export default function Home() {
         authorization: localStorage.getItem("jwt-token")
       },
       body: JSON.stringify({
+        announcementTitle,
+        announcementContent,
         formData
       })
     });
@@ -161,6 +163,7 @@ export default function Home() {
         </div>
 
         <DateDisplay />  
+        {/* <AllAnnouncements> </AllAnnouncements> */}
 
         <div className='flex flex-col items-center announcements p-4 border-secondary'>
           {announcements.map((announcement, index) => (

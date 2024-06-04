@@ -30,6 +30,18 @@ export default function Home() {
     navigate('/profile')
   }
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await (await fetch(`${import.meta.env.VITE_SERVER_URL}/`)).json()
+        setAnnouncements(response);
+        console.log(response)
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+    fetchData();
+  }, []);
 
   async function createAnnouncement() {
     const formData = new FormData;
@@ -184,9 +196,9 @@ export default function Home() {
                 </figure>
               )}
               <div className="card-body">
-                <h3 className='font-bold text-xl'>{announcement.title}</h3>
-                <p>{announcement.content}</p>
-                <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p> {/* Display timestamp */}
+                <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
+                <p>{announcement.announcementContent}</p>
+                {announcement.timestamp && <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>} {/* Display timestamp */}
               </div>
             </div>
           ))}

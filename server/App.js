@@ -13,9 +13,9 @@ import cors from "cors";
 //--->MO
 
 // import serverless from 'serverless-http';
-import { access } from 'fs';
-import { request } from 'http';
-import { Prisma } from '@prisma/client';
+// import { access } from 'fs';
+// import { request } from 'http';
+// import { Prisma } from '@prisma/client';
 
 // import { PutObjectCommand } from '@aws-sdk/client-s3';--->MO
 // dotenv.config()--->MO

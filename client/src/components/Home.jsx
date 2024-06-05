@@ -206,7 +206,7 @@ export default function Home() {
           ))}
         </div>
 
-
+        {/* nav bar */}
         <div className="content relative">
         <nav className='flex flex-col nav1 font-semibold bg-accent py-80 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
@@ -214,8 +214,8 @@ export default function Home() {
           <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
         </div>
 
-            <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary px-20 outline outline-offset-1 outline-black'>Profile</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black'>Slack</button>
+            <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-26 mx-14'>Slack</button>
             <SignOut></SignOut>
             {token ?
             <>

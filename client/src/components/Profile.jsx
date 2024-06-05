@@ -89,14 +89,14 @@ export default function Profile() {
                         <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
                     </div>
 
-                    <button onClick={() => navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary px-20 outline outline-offset-1 outline-black'>Home</button>
-                    <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black'>Slack</button>
+                    <button onClick={() => navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Home</button>
+                    <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-26 mx-14'>Slack</button>
                     <SignOut></SignOut>
                 </nav>
             </div>
 
             {/* profile pic box with general info */}
-            <div className='flex flex-row justify-center'>
+            <div className='flex flex-row justify-center ml-52 mt-9'>
 
                 <div className='flex flex-col border-1 rounded-lg shadow-lg shadow-gray-400 h-full px-6'>
                     <div className="avatar">
@@ -139,40 +139,40 @@ export default function Profile() {
                 <div>
                     <form className='flex flex-col order-1 rounded-lg shadow-lg shadow-gray-400 m-5 pt-7 h-full'>
 
-                        <label className='font-semibold'>First name:</label>
+                        <label className='font-semibold mx-6'>First name:</label>
                         {token ?
                             <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.firstName} type="text" />
-                            : <input className='block border-2 rounded-lg border-gray-400' placeholder={user.firstName} type="text" />}
+                            : <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={user.firstName} type="text" />}
 
-                        <label className='font-semibold'>Last name:</label>
+                        <label className='font-semibold mx-6'>Last name:</label>
                         {token ?
                             <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.lastName} type="text" />
-                            : <input className='block border-2 rounded-lg border-gray-400' placeholder={user.lastName} type="text" />}
+                            : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.lastName} type="text" />}
 
 
-                        <label className='font-semibold'>Empolyee ID:</label>
+                        <label className='font-semibold mx-6'>Empolyee ID:</label>
                         {token ?
                             <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.employeeID}></input>
-                            : <input className='block border-2 rounded-lg border-gray-400' placeholder={user.employeeID}></input>}
+                            : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.employeeID}></input>}
 
                         {token ?
-                        <label className='font-semibold'>Email:</label>
+                        <label className='font-semibold mx-6'>Email:</label>
                         : null}
 
                         {token ?
                         <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.email}></input>
                         : null}
 
-                        <label className='font-semibold'>Update Password:</label>
-                        <input className='block border-2 rounded-lg border-gray-400'></input>
+                        <label className='font-semibold mx-6'>Update Password:</label>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
 
-                        <label className='font-semibold'>Position:</label>
-                        <input className='block border-2 rounded-lg border-gray-400'></input>
+                        <label className='font-semibold mx-6'>Position:</label>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
 
-                        <label className='font-semibold'>Store Location:</label>
-                        <input className='block border-2 rounded-lg border-gray-400'></input>
+                        <label className='font-semibold mx-6'>Store Location:</label>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
 
-                        <button className='btn rounded-full bg-accent hover:bg-primary mt-4'>Submit</button>
+                        <button className='btn rounded-full bg-accent hover:bg-primary mt-4 w-24 ml-48'>Submit</button>
                     </form>
 
 

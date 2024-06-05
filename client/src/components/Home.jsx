@@ -151,16 +151,16 @@ export default function Home() {
   return (
     <div>
       <div>
-        <div className='flex-row px-7 m-3 py-3'>
+        {/* <div className='flex-row px-7 m-3 py-3'>
           <img src={JPLogo} style={{ position: 'fixed', left: 40, top: '10%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="10%" height="10%"></img>
-        </div>
+        </div> */}
         
         {token ?
-        <h1 className="flex justify-center font-bold text-2xl text-violet-600 tracking-wider  ">"Welcome {admin.firstName} {admin.lastName}!"</h1>
-        :<h1 className="flex justify-center font-bold text-2xl text-violet-600 tracking-wider ">"Welcome {user.firstName} {user.lastName}!"</h1>}
+        <h1 className="flex justify-center font-bold text-2xl mt-14">"Welcome {admin.firstName} {admin.lastName}!"</h1>
+        :<h1 className="flex justify-center font-bold text-2xl mt-14">"Welcome {user.firstName} {user.lastName}!"</h1>}
        
        <div>
-       <p className='flex justify-center text-xl font-semibold my-3'><DateDisplay /> </p>
+       <p className='flex justify-center text-2xl font-bold py-4'><DateDisplay /> </p>
        </div>
        
         <div className='flex justify-center text-4xl'>
@@ -194,14 +194,18 @@ export default function Home() {
 
         
         <div className="content relative">
-        <nav className='nav1 m-16 font-semibold space-y-7' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
-            <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary'>Profile</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
+        <nav className='flex flex-col nav1 font-semibold bg-accent py-80 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
+
+        <div className='flex-row'>
+          <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
+        </div>
+
+            <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary px-20 outline outline-offset-1 outline-black'>Profile</button>
+            <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black'>Slack</button>
             <SignOut></SignOut>
             {token ?
             <>
-                <button className='block btn bg-primary rounded-full hover:bg-secondary' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
+                <button className='block btn bg-primary rounded-full hover:bg-secondary px-5 outline outline-offset-1 outline-black' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
                 <dialog className='modal-box' id = "my_modal_2">
                 <form onSubmit={handleAnnouncementSubmit}>
 

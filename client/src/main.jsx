@@ -12,6 +12,8 @@ import Home from './components/Home.jsx';
 import AdminLogIn from './components/AdminLogIn.jsx';
 import AdminSignUp from './components/AdminSignUp.jsx';
 import CreateAnnouncement from './components/CreateAnnouncement.jsx';
+import Profile from './components/Profile.jsx';
+import AllAnnouncements from './components/AllAnnouncements.jsx';
 
 
 const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
 {
   path: "/createannouncement",
   element: <CreateAnnouncement></CreateAnnouncement>
+},
+{
+  path: "/profile",
+  element: <Profile> </Profile>
+},
+{
+  path: "/announcements",
+  element: <AllAnnouncements> </AllAnnouncements>
 }
 
 ]);

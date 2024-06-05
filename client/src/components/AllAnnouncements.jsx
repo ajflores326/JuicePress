@@ -1,12 +1,27 @@
-// import { useState } from 'react'
-
-// export default async function AllAnnouncements(event) {
-//     const response = await fetch (`${import.meta.env.VITE_SERVER_URL}/announcements`)
+import { useEffect, useState } from 'react';
 
 
-//     return (
-//         <div>
+export default function showAnnouncements() {
+  const [announcements, setAnnouncements] = useState([]);
 
-//         </div>
-//     )
-// }
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await (await fetch(`${import.meta.env.VITE_SERVER_URL}/`)).json()
+        setAnnouncements(response);
+        console.log(response)
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+    fetchData();
+  }, []);
+
+  return (
+    <div className="h-screen">
+      {announcements.map((response) => (
+        <div key={response._id}> {response.announcementContent} {response.announcementTitle}</div>
+      ))}
+    </div>
+  );
+}

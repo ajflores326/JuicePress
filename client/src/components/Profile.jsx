@@ -83,17 +83,17 @@ export default function Profile() {
 
             {/* navigation bar */}
             <div className="content relative">
-        <nav className='flex flex-col nav1 font-semibold bg-accent py-80 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
+                <nav className='flex flex-col nav1 font-semibold bg-accent py-80 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
-        <div className='flex-row'>
-          <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
-        </div>
+                    <div className='flex-row'>
+                        <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
+                    </div>
 
-            <button onClick={()=> navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary px-20 outline outline-offset-1 outline-black'>Home</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black'>Slack</button>
-            <SignOut></SignOut>
-          </nav>
-        </div>
+                    <button onClick={() => navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary px-20 outline outline-offset-1 outline-black'>Home</button>
+                    <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black'>Slack</button>
+                    <SignOut></SignOut>
+                </nav>
+            </div>
 
             {/* profile pic box with general info */}
             <div className='flex flex-row justify-center'>
@@ -106,59 +106,72 @@ export default function Profile() {
                     </div>
 
                     <div className='flex flex-col'>
-                        
+
                         <div className='flex justify-center py-7'>
-                        <label className='font-semibold text-2xl'>Name:</label>
-                        <h1 className='text-2xl'>{admin.firstName} {admin.lastName}</h1>
+                            <label className='font-semibold text-2xl'>Name:</label>
+                            {token ?
+                                <h1 className='text-2xl'>{admin.firstName} {admin.lastName}</h1>
+                                : <h1 className='text-2xl'>{user.firstName} {user.lastName}</h1>}
+
                         </div>
-                        
+
                         <div className='flex justify-center'>
-                        <label className='font-semibold text-2xl'>Position:</label>
-                        <h1 className='block text-2xl'>Store Manager</h1>
+                            <label className='font-semibold text-2xl'>Position:</label>
+                            {token ?
+                            <h1 className='block text-2xl'>Store Manager</h1>
+                            : <h1 className='text-2xl'>Front End</h1>}
                         </div>
-                        
+
                         <div className='flex justify-center p-7'>
-                        <label className='font-semibold text-2xl'>Location:</label>
-                        <h1 className='block text-2xl'>New York, New York City</h1>
+                            <label className='font-semibold text-2xl'>Location:</label>
+                            <h1 className='block text-2xl'>New York, New York City</h1>
                         </div>
-                        
-                        </div>
+
+                    </div>
                 </div>
 
+                {/* back button */}
                 {/* <button className='flex justify-left p-5 m-10 py-4 btn rounded-full bg-primary hover:bg-secondary' onClick={() => navigateBack()}> BACK </button> */}
-                {/* <img className = "flex justify-left m-10" src = {juice} /> */}
-                {/* <h1 className = "flex justify-left p-20"> PICTURE PLACEHOLDER </h1> */}
-                {/* {token ?
-                    <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">"{admin.firstName} {admin.lastName}, Welcome to your profile!"</h1>
-                    : <h1 className="flex justify-center p-5 font-bold text-2xl text-violet-600 tracking-wider">"{user.firstName} {user.lastName},  Welcome to your profile!!"</h1>} */}
-                {/* <img className="flex justify-left m-10" src={juice} />
-            {token ?
-                <h1 className="flex justify-left p-5 font-bold text-2xl text-violet-600 tracking-wider">Employee ID: {admin.employeeID} </h1>
-                : <h1 className="flex justify-left p-5 font-bold text-2xl text-violet-600 tracking-wider">Employee ID: {user.employeeID} </h1>}
-            {token ?
-                <h1 className="flex justify-left p-5 font-bold text-2xl text-violet-600 tracking-wider">Email: {admin.email} </h1>
-                : ""}
-            <h1 className="flex justify-left p-5 font-bold text-2xl text-primary tracking-wider"> Position: </h1>
-            <h1 className="flex justify-left p-5 font-bold text-2xl text-secondary tracking-wider"> Store Number: </h1> */}
+     
 
-                {/* add a password field  */}
-                {/* profile update form box */}
+                {/* add a password update field  */}
+                {/* profile field box */}
                 <div>
                     <form className='flex flex-col order-1 rounded-lg shadow-lg shadow-gray-400 m-5 pt-7 h-full'>
+
                         <label className='font-semibold'>First name:</label>
-                        <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.firstName} type="text" />
+                        {token ?
+                            <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.firstName} type="text" />
+                            : <input className='block border-2 rounded-lg border-gray-400' placeholder={user.firstName} type="text" />}
+
                         <label className='font-semibold'>Last name:</label>
-                        <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.lastName} type="text" />
+                        {token ?
+                            <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.lastName} type="text" />
+                            : <input className='block border-2 rounded-lg border-gray-400' placeholder={user.lastName} type="text" />}
+
+
                         <label className='font-semibold'>Empolyee ID:</label>
-                        <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.employeeID}></input>
+                        {token ?
+                            <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.employeeID}></input>
+                            : <input className='block border-2 rounded-lg border-gray-400' placeholder={user.employeeID}></input>}
+
+                        {token ?
                         <label className='font-semibold'>Email:</label>
+                        : null}
+
+                        {token ?
                         <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.email}></input>
+                        : null}
+
                         <label className='font-semibold'>Update Password:</label>
                         <input className='block border-2 rounded-lg border-gray-400'></input>
+
                         <label className='font-semibold'>Position:</label>
                         <input className='block border-2 rounded-lg border-gray-400'></input>
+
                         <label className='font-semibold'>Store Location:</label>
                         <input className='block border-2 rounded-lg border-gray-400'></input>
+
                         <button className='btn rounded-full bg-accent hover:bg-primary mt-4'>Submit</button>
                     </form>
 

@@ -211,54 +211,59 @@ export default function Home() {
         <nav className='flex flex-col nav1 font-semibold bg-accent py-80 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
         <div className='flex-row'>
-          <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
+          <img src={JPLogo} style={{ position: 'fixed', left: 17, top: '23%',  transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="85%" height="85%"></img>
         </div>
 
+                <div className='flex flex-col space-y-9'>
             <button onClick={()=> navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-26 mx-14'>Slack</button>
             <SignOut></SignOut>
             {token ?
             <>
-                <button className='block btn bg-primary rounded-full hover:bg-secondary px-5 outline outline-offset-1 outline-black' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
+                <button className='block btn bg-primary rounded-full hover:bg-secondary outline outline-offset-1 outline-black w-42 mx-14' onClick={()=>document.getElementById('my_modal_2').showModal()}> Create Post </button>
                 <dialog className='modal-box' id = "my_modal_2">
                 <form onSubmit={handleAnnouncementSubmit}>
 
+                    <label className='block'>Title:</label>
                     <input
-                      className='rounded py-2 px-4 border border-black m-2'
+                      className='rounded py-2 px-4 border border-black m-2 w-96'
                       placeholder='Announcement Title'
                       value={announcementTitle}
                       onChange={(e) => setAnnouncementTitle(e.target.value)}
                       required
                     />
+
+                    <label className='block'>Content:</label>
                     <textarea
-                      className='rounded py-2 px-4 border border-black m-2'
+                      className='rounded py-2 px-4 border border-black m-2 w-96 h-80'
                       placeholder='Announcement Content'
                       value={announcementContent}
                       onChange={(e) => setAnnouncementContent(e.target.value)}
                       required
                     />
-                    <p>Image</p>
+                    <p>Upload Image:</p>
                     <input
                       className='block rounded py-2 px-4 border border-black m-2'
                       type='file'
                       accept='image/*'
                       onChange={(e) => setAnnouncementImage(e.target.files[0])}
                     />
-                    <p>Video</p>
+                    <p>Upload Video:</p>
                     <input
                       className='block rounded py-2 px-4 border border-black m-2'
                       type='file'
                       accept='video/*'
                       onChange={(e) => setAnnouncementVideo(e.target.files[0])}
                     />
-                    <button className='btn bg-primary rounded-full px-9 py-3 hover:bg-secondary font-semibold' type='submit'>Submit</button>
+                    <button className='btn bg-primary rounded-full px-7 py-3 hover:bg-secondary font-semibold mt-3 ml-44' type='submit'>Submit</button>
                   </form>
-                  <button className='btn bg-secondary rounded-full px-9 py-3 hover:bg-primary font-semibold' onClick={() => document.getElementById('my_modal_2').close()}>Close</button>
+                  <button className='btn bg-secondary rounded-full px-6 py-3 hover:bg-primary font-semibold mt-3 ml-96' onClick={() => document.getElementById('my_modal_2').close()}>Close</button>
                 </dialog>
               </>
               : ""}
+              </div>
           </nav>
-
+          
 
 
         </div>

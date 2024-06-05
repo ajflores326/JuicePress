@@ -135,24 +135,25 @@ export default function Profile() {
      
 
                 {/* add a password update field  */}
-                {/* profile field box */}
+                {/* profile input box for updates*/}
                 <div>
+
                     <form className='flex flex-col order-1 rounded-lg shadow-lg shadow-gray-400 m-5 pt-7 h-full'>
 
                         <label className='font-semibold mx-6'>First name:</label>
                         {token ?
-                            <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.firstName} type="text" />
+                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.firstName} type="text" />
                             : <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={user.firstName} type="text" />}
 
                         <label className='font-semibold mx-6'>Last name:</label>
                         {token ?
-                            <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.lastName} type="text" />
+                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.lastName} type="text" />
                             : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.lastName} type="text" />}
 
 
                         <label className='font-semibold mx-6'>Empolyee ID:</label>
                         {token ?
-                            <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.employeeID}></input>
+                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.employeeID}></input>
                             : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.employeeID}></input>}
 
                         {token ?
@@ -160,7 +161,7 @@ export default function Profile() {
                         : null}
 
                         {token ?
-                        <input className='block border-2 rounded-lg border-gray-400' placeholder={admin.email}></input>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.email}></input>
                         : null}
 
                         <label className='font-semibold mx-6'>Update Password:</label>
@@ -174,7 +175,6 @@ export default function Profile() {
 
                         <button className='btn rounded-full bg-accent hover:bg-primary mt-4 w-24 ml-48'>Submit</button>
                     </form>
-
 
                 </div>
 

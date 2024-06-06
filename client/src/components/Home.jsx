@@ -153,9 +153,6 @@ export default function Home() {
    return (
     <div>
       <div>
-        <div className='flex-row px-7 m-2 py-3'>
-          <img src={JPLogo} style={{ position: 'fixed', left: 40, top: '10%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="10%" height="10%"></img>
-        </div>
         
         {token ?
           <h1 className="flex justify-center font-bold text-2xl mt-3">"Welcome {admin.firstName} {admin.lastName}!"</h1>

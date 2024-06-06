@@ -7,28 +7,30 @@ import Popup from 'reactjs-popup';
 import admin from '../../../server/models/admin';
 import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
-import { formatDistanceToNow, parseISO } from "date-fns"
+import { formatDistanceToNow, parseISO } from "date-fns";
 import DateDisplay from './DateDisplay';
-// import AllAnnouncements  from './AllAnnouncements'
-
+// import AllAnnouncements  from './AllAnnouncements';
 
 export default function Home() {
-  // create announcements component, state management, handle creation, & rendering announcements
   const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
-  const [announcements, setAnnouncements] = useState([])
+  const [announcements, setAnnouncements] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [announcementTitle, setAnnouncementTitle] = useState('');
-  const [announcementContent, setAnnouncementContent] = useState('')
+  const [announcementContent, setAnnouncementContent] = useState('');
   const [announcementImage, setAnnouncementImage] = useState(null);
   const [announcementVideo, setAnnouncementVideo] = useState(null);
-  const [user, setUser] = useState("")
-  const [admin, setAdmin] = useState("")
+  const [user, setUser] = useState({});
+  const [admin, setAdmin] = useState({});
   const navigate = useNavigate();
-
 
   function navigateProfile() {
     navigate('/profile')
   }
+
+  function navigateSlack() {
+    navigate('/slack');
+  }
+
   //fetching all announcements from database
   async function fetchData() {
     try {
@@ -98,7 +100,7 @@ export default function Home() {
     setAnnouncements([...announcements, newAnnouncement]);
     setAnnouncementTitle('');
     setAnnouncementContent('');
-    setAnnouncementImage(null);
+    setAnnouncementImage(null);    
     await createAnnouncement();
     fetchData()
     document.getElementById('my_modal_2').close();
@@ -107,14 +109,14 @@ export default function Home() {
   async function getUsername() {
 
     //using fetch to obtain user last name and first name from database
-    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
-      method: "GET",
-      headers: {
-        "authorization": localStorage.getItem("jwt-token")
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
+        method: "GET",
+        headers: {
+          "authorization": localStorage.getItem("jwt-token")
 
-      },
-
-    });
+        },
+  
+      });
 
     //getting user object
     if (response.status === 200) {
@@ -135,13 +137,13 @@ export default function Home() {
 
     //using fetch to obtain user last name and first name from database
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
-      method: "GET",
-      headers: {
-        "authorization": localStorage.getItem("jwt-tokenAdmin")
+        method: "GET",
+        headers: {
+          "authorization": localStorage.getItem("jwt-tokenAdmin")
+          
+        },
 
-      },
-
-    });
+      });
 
     //getting user object
     if (response.status === 200) {
@@ -166,7 +168,7 @@ export default function Home() {
     <div>
       <div>
         <div className='flex-row px-7 m-3 py-3'>
-          <img src={JPLogo} style={{ position: 'fixed', left: 40, top: '10%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="10%" height="10%"></img>
+        <img src={JPLogo} style={{ position: 'fixed', left: 40, top: '10%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="10%" height="10%"></img>
         </div>
 
         {token ?
@@ -198,7 +200,7 @@ export default function Home() {
                 </figure>
               )}
               <div className="card-body">
-                <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
+              <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
                 <p>{announcement.announcementContent}</p>
                 {announcement.timestamp && <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>} {/* Display timestamp */}
               </div>
@@ -209,8 +211,8 @@ export default function Home() {
 
         <div className="content relative">
           <nav className='nav1 m-16 font-semibold space-y-7' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
-            <button onClick={() => navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary'>Profile</button>
-            <button className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
+          <button onClick={() => navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary'>Profile</button>
+            <button onClick={() => navigate('/slack')} className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
             <button className='block btn rounded-full bg-primary hover:bg-secondary'>Help</button>
             <SignOut></SignOut>
             {token ?
@@ -253,14 +255,14 @@ export default function Home() {
                 </dialog>
               </>
               : ""}
-          </nav>
-
-
-
+              </nav>
+    
+    
+    
+            </div>
+          </div>
+    
         </div>
-      </div>
-
-    </div>
-
-  );
-}
+    
+      );
+    }

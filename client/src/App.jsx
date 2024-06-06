@@ -6,7 +6,7 @@ import LogIn from './components/LogIn';
 import Home from './components/Home';
 import AdminLogIn from './components/AdminLogIn';
 import AdminSignUp from './components/AdminSignUp';
-
+import Slack from './components/Slack';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("jwt-token"));

@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import LogIn from './components/LogIn.jsx';
+
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import LogIn from './components/LogIn.jsx';
 import SignUp from './components/SignUp.jsx';
 import Home from './components/Home.jsx';
 import AdminLogIn from './components/AdminLogIn.jsx';
@@ -14,7 +15,7 @@ import AdminSignUp from './components/AdminSignUp.jsx';
 import CreateAnnouncement from './components/CreateAnnouncement.jsx';
 import Profile from './components/Profile.jsx';
 import AllAnnouncements from './components/AllAnnouncements.jsx';
-
+import Slack from './components/Slack.jsx';
 
 const router = createBrowserRouter([
   {
@@ -37,23 +38,26 @@ const router = createBrowserRouter([
     path: "/adminSignup",
     element: <AdminSignUp></AdminSignUp>
   },
-{
-  path: "/createannouncement",
-  element: <CreateAnnouncement></CreateAnnouncement>
-},
-{
-  path: "/profile",
-  element: <Profile> </Profile>
-},
-{
-  path: "/announcements",
-  element: <AllAnnouncements> </AllAnnouncements>
-}
-
+  {
+    path: "/createannouncement",
+    element: <CreateAnnouncement></CreateAnnouncement>
+  },
+  {
+    path: "/profile",
+    element: <Profile> </Profile>
+  },
+  {
+    path: "/announcements",
+    element: <AllAnnouncements> </AllAnnouncements>
+  },
+  {
+    path: "/slack",
+    element: <Slack></Slack> 
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

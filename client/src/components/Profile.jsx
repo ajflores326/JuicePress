@@ -83,7 +83,7 @@ export default function Profile() {
 
             {/* navigation bar */}
             <div className="content relative">
-                <nav className='flex flex-col nav1 font-semibold bg-accent py-80 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
+                <nav className='flex flex-col nav1 font-semibold bg-accent py-96 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
                     <div className='flex-row'>
                         <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>

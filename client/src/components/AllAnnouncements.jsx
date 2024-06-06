@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 
 export default function showAnnouncements() {
+    
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
@@ -20,8 +21,13 @@ export default function showAnnouncements() {
   return (
     <div className="h-screen">
       {announcements.map((response) => (
-        <div key={response._id}> {response.announcementContent} {response.announcementTitle}</div>
+        <div key={response._id}> 
+        Title: {response.announcementTitle}
+         Content: {response.announcementContent}
+        </div>
       ))}
     </div>
   );
 }
+
+

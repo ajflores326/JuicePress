@@ -5,6 +5,14 @@ import userRouter from "./controllers/routes-user.js";
 import adminRouter from "./controllers/routes-admin.js";
 import mongoose from "mongoose";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// define __dirname in ES modules
+//  __filename is a URL, which it is in ES modules
+const __filename = fileURLToPath(import.meta.url);
+// gets the directory name of the current module file
+const __dirname = path.dirname(__filename);
 
 //---->MO
 // import { PrismaClient } from
@@ -48,7 +56,7 @@ app.use(express.json());
 app.use("/", router);
 app.use("/user", userRouter)
 app.use("/admin", adminRouter)
-
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //storing file by sending to s3 bucket--->MO
 // app.post("/api/posts", upload.single(""), async (req, res) => {

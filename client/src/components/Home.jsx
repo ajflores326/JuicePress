@@ -196,7 +196,7 @@ export default function Home() {
           <nav className='flex flex-col nav1 font-semibold bg-accent py-96 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
             <div className='flex-row'>
-              <img src={JPLogo} style={{ position: 'fixed', left: 17, top: '23%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="85%" height="85%"></img>
+              <img src={JPLogo} style={{ position: 'fixed', left: 17, top: '26%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="85%" height="85%"></img>
             </div>
 
             <div className='flex flex-col space-y-9'>

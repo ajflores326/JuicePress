@@ -86,7 +86,7 @@ export default function Profile() {
                 <nav className='flex flex-col nav1 font-semibold bg-accent py-96 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
                     <div className='flex-row'>
-                        <img src={JPLogo} style={{ position: 'fixed', left: 9, top: '23%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="90%" height="90%"></img>
+                        <img src={JPLogo} style={{ position: 'fixed', left: 14, top: '25%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="85%" height="85%"></img>
                     </div>
 
                     <button onClick={() => navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Home</button>

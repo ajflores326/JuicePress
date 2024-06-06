@@ -55,7 +55,7 @@ export default function Home() {
   async function createAnnouncement() {
     const formData = new FormData;
     formData.append("announcementTitle", announcementTitle);
-    formData.append("announcementContent", announcementTitle);
+    formData.append("announcementContent", announcementContent);
     formData.append("timestamp", new Date().toISOString())
     if (announcementImage) formData.append("image", announcementImage);
     if (announcementVideo) formData.append("video", announcementVideo);
@@ -66,7 +66,9 @@ export default function Home() {
       headers: {
         authorization: localStorage.getItem("jwt-token")
       },
-      body: formData
+      body: formData,
+      announcementTitle,
+      announcementContent
     });
 
     if (response.status === 200) {

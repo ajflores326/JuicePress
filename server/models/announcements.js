@@ -15,9 +15,11 @@ const announcementSchema = new Schema({
     type: String,
   },
   image: {
+    data: Buffer,
     type: String,
   },
   video: {
+    data: Buffer,
     type: String,
   },
   timestamp: {

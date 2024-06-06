@@ -15,10 +15,10 @@ const announcementSchema = new Schema({
     type: String,
   },
   image: {
-    type: String,
+    type: String
   },
   video: {
-    type: String,
+    type: String
   },
   timestamp: {
     type: Date,

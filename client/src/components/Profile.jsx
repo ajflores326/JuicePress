@@ -134,8 +134,8 @@ export default function Profile() {
                 {/* <button className='flex justify-left p-5 m-10 py-4 btn rounded-full bg-primary hover:bg-secondary' onClick={() => navigateBack()}> BACK </button> */}
      
 
-                {/* add a password update field  */}
-                {/* profile input box for updates*/}
+                {/* add a password update field */}
+                {/* profile input box */}
                 <div>
 
                     <form className='flex flex-col order-1 rounded-lg shadow-lg shadow-gray-400 m-5 pt-7 h-full'>

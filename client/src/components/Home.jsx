@@ -7,27 +7,29 @@ import Popup from 'reactjs-popup';
 import admin from '../../../server/models/admin';
 import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
-import { formatDistanceToNow, parseISO } from "date-fns"
+import { formatDistanceToNow, parseISO } from "date-fns";
 import DateDisplay from './DateDisplay';
-// import AllAnnouncements  from './AllAnnouncements'
-
+// import AllAnnouncements  from './AllAnnouncements';
 
 export default function Home() {
-  // create announcements component, state management, handle creation, & rendering announcements
   const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
-  const [announcements, setAnnouncements] = useState([])
+  const [announcements, setAnnouncements] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [announcementTitle, setAnnouncementTitle] = useState('');
-  const [announcementContent, setAnnouncementContent] = useState('')
+  const [announcementContent, setAnnouncementContent] = useState('');
   const [announcementImage, setAnnouncementImage] = useState(null);
   const [announcementVideo, setAnnouncementVideo] = useState(null);
-  const [user, setUser] = useState("")
-  const [admin, setAdmin] = useState("")
+  const [user, setUser] = useState({});
+  const [admin, setAdmin] = useState({});
   const navigate = useNavigate();
-
 
   function navigateProfile() {
     navigate('/profile')
+  }
+
+
+  function navigateSlack() {
+    navigate('/slack');
   }
 
   //fetching all announcements from database
@@ -183,7 +185,7 @@ export default function Home() {
                 </figure>
               )}
               <div className="card-body">
-                <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
+              <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
                 <p>{announcement.announcementContent}</p>
                 {announcement.timestamp && <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>}
               </div>
@@ -201,7 +203,7 @@ export default function Home() {
 
             <div className='flex flex-col space-y-9'>
               <button onClick={() => navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
-              <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-26 mx-14'>Slack</button>
+              <button onClick={() => navigate('/slack')} className='block btn rounded-full bg-primary hover:bg-secondary'>Slack</button>
               <SignOut></SignOut>
               {token ?
                 <>

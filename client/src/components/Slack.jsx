@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import MessageList from './MessageList';
 import UserList from './UserList';
 import './styles/Slack.css';
@@ -13,7 +13,18 @@ const Slack = () => {
       try {
         const response = await fetch('http://localhost:3000/messages');
         const data = await response.json();
-        setMessages(data.messages);
+
+        // Process messages
+        const messagesWithDefaults = data.messages.map((msg, index) => ({
+          ...msg,
+          id: msg.id || `message-${index}`,
+          timestamp: msg.ts ? new Date(parseFloat(msg.ts) * 1000).toISOString() : new Date().toISOString(),
+        }));
+
+        // Sort messages by timestamp in ascending order
+        const sortedMessages = messagesWithDefaults.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        
+        setMessages(sortedMessages);
       } catch (error) {
         console.error('Error fetching messages:', error);
       }

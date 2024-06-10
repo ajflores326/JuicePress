@@ -1,17 +1,11 @@
 import React from 'react';
-import './styles/Slack.css'; 
+import Message from './Message';
+
 const MessageList = ({ messages }) => {
   return (
     <div className="message-list">
-      {messages.map((message, index) => (
-        <div key={index} className="message">
-          <img src={message.avatar} alt="Avatar" className="avatar" />
-          <div className="message-content">
-            <strong className="message-user">{message.user}</strong>
-            <p className="message-text">{message.text}</p>
-            <span className="message-timestamp">{message.timestamp}</span>
-          </div>
-        </div>
+      {messages.map((message) => (
+        <Message key={message.id} message={message} />
       ))}
     </div>
   );

@@ -19,6 +19,10 @@ export default function Profile() {
         navigate('/home')
     }
 
+    function navigateSlack() {
+        navigate('/slack');
+      }    
+
     async function getUsername() {
 
         //using fetch to obtain user last name and first name from database
@@ -90,7 +94,7 @@ export default function Profile() {
                     </div>
 
                     <button onClick={() => navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Home</button>
-                    <button className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-26 mx-14'>Slack</button>
+                    <button onClick={() => navigate('/slack')} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
                     <SignOut></SignOut>
                 </nav>
             </div>

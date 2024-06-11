@@ -8,6 +8,8 @@ import cors from "cors";
 import axios from 'axios';
 import path from "path";
 import { fileURLToPath } from "url";
+import config from './config/index.js'
+import s3Router from './controllers/routes-s3.js';
 
 // define __dirname in ES modules
 //  __filename is a URL, which it is in ES modules
@@ -80,7 +82,9 @@ const app = express();
 // const storage = multer.memoryStorage()---->MO
 // const upload = multer({ storage: storage})---->MO
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use(express.json());
 app.use("/", router);
 app.use("/user", userRouter)
@@ -183,6 +187,11 @@ app.get('/channel-users', async (req, res) => {
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server is now listening on port ${process.env.SERVER_PORT}`)
+})
+app.use('/api/s3', s3Router)
+
+app.listen(config.PORT, () => {
+    console.log(`Server listening on http://localhost:${config.PORT}`)
 })
 
 mongoose.connect(process.env.ATLAS_CONNECTION)

@@ -14,6 +14,13 @@
 .message-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .message-user {
@@ -25,12 +32,12 @@
   background-color: #e9ecef;
   padding: 10px;
   border-radius: 8px;
-  margin-left: 10px;
-  flex: 1;
 }
 
 .message-timestamp {
   font-size: 0.8em;
   color: gray;
-  margin-top: 5px;
+  margin-left: auto;
+  white-space: nowrap;
+  align-self: flex-start;
 }

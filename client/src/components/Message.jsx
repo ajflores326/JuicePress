@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import './styles/Message.css';
 
 const Message = ({ message }) => {
   const { user, text, timestamp, avatar } = message;
+
+  useEffect(() => {
+    console.log('Rendering message:', message);
+  }, [message]);
 
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
@@ -16,9 +22,11 @@ const Message = ({ message }) => {
     <div className="message">
       <img src={avatar} alt="avatar" className="avatar" />
       <div className="message-content">
-        <div className="message-user">{user}</div>
+        <div className="message-header">
+          <span className="message-user">{user}</span>
+          <span className="message-timestamp">{formatTimestamp(timestamp)}</span>
+        </div>
         <div className="message-text">{text}</div>
-        <div className="message-timestamp">{formatTimestamp(timestamp)}</div>
       </div>
     </div>
   );

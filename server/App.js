@@ -9,7 +9,9 @@ import axios from 'axios';
 import path from "path";
 import { fileURLToPath } from "url";
 import config from './config/index.js'
-import s3Router from './controllers/routes-s3.js';
+import AWS from 'aws-sdk'
+import multer from 'multer'
+// import s3Router from './controllers/routes-s3.js';
 
 // define __dirname in ES modules
 //  __filename is a URL, which it is in ES modules
@@ -90,6 +92,40 @@ app.use("/", router);
 app.use("/user", userRouter)
 app.use("/admin", adminRouter)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
+AWS.config.update({
+  accessKeyId: 'AKIAYS2NV5RVGMFAKB6A',
+  secretAccessKey: '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',
+  region: 'us-east-1',
+});
+
+const s3 = new AWS.S3();
+
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // limit file size to 5MB
+  }
+});
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  const params = {
+    Bucket: 'juicepress1',
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+  };
+
+  s3.upload(params, (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error uploading file');
+    }
+
+    res.send('File uploaded successfully');
+  });
+});
 
 //storing file by sending to s3 bucket--->MO
 // app.post("/api/posts", upload.single(""), async (req, res) => {
@@ -188,7 +224,7 @@ app.get('/channel-users', async (req, res) => {
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server is now listening on port ${process.env.SERVER_PORT}`)
 })
-app.use('/api/s3', s3Router)
+// app.use('/api/s3', s3Router)
 
 app.listen(config.PORT, () => {
     console.log(`Server listening on http://localhost:${config.PORT}`)

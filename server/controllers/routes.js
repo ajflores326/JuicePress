@@ -5,6 +5,7 @@ import userValidationMiddleware from "../middleware/validationMiddleware.js";
 import User from "../models/user.js"
 import multer from "multer";
 import path from "path";
+import Profile from "../models/profile.js";
 
 const router = Router();
 
@@ -64,6 +65,21 @@ router.post("/createannouncement", upload.fields([{name: "image"}, {name: "video
 router.post("/", validationMiddleware, (request, response) => {
   res.send("Validation middleware successful");
 });
+
+// router.post("/profile", async (request, response) => {
+  // check to see if there were any changes, use filter() method
+  // if any changes were made save them to database
+  // display changes as placeholders on profile page 
+
+//   try {
+//       const profileUpdate = await Profile.filter()
+//       response.send(profileUpdate);
+//       await profileUpdate.save();
+//   } catch (error) {
+//       response.send(error.message);
+//   }
+// });
+
 
 
 export default router;

@@ -5,13 +5,14 @@
 // const router = Router();
 
 // router.post("/profile", async (request, response) => {
-    //check to see if there were any changes, use filter() method
-    //if any changes were made save them to database
-    //display changes as placeholders on profile page 
+    // check to see if there were any changes, use filter() method
+    // if any changes were made save them to database
+    // display changes as placeholders on profile page 
 
 //     try {
 //         const profileUpdate = await Profile.filter()
 //         response.send(profileUpdate);
+//         await profileUpdate.save();
 //     } catch (error) {
 //         response.send(error.message);
 //     }

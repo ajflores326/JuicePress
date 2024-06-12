@@ -203,7 +203,7 @@ export default function Home() {
 
             <div className='flex flex-col space-y-9'>
               <button onClick={() => navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
-              <button onClick={() => navigate('/slack')} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
+              <button onClick={() => navigateSlack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
               <SignOut></SignOut>
               {token ?
                 <>

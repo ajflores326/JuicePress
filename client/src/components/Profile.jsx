@@ -13,6 +13,13 @@ export default function Profile() {
     const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
     const [user, setUser] = useState("")
     const [admin, setAdmin] = useState("")
+    // const [firstName, setFirstName] = useState("")
+    // const [lastName, setLastName] = useState("")
+    // const [employeeID, setEmployeeID] = useState("");
+    // const [email, setEmail] = useState("")
+    // const [updatePassword, setUpdatePassword] = useState("")
+    // const [position, setPosition] = useState("")
+    // const [storeLocation, setStoreLocation] = useState("")
     const navigate = useNavigate()
 
     function navigateBack() {
@@ -77,6 +84,36 @@ export default function Profile() {
         getAdminUsername()
     }, [])
 
+    //submitForm Function
+    // async function submitForm(event){
+    //     event.preventDefault();
+    //     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/profile`, {
+    //         method: "POST",
+    //         headers: {
+    //           "content-type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             firstName,
+    //             lastName,
+    //             employeeID,       
+    //             email,      
+                // updatePassword,
+    //             position,
+    //             storeLocation
+    //         })
+    //       });
+      
+    //       if (response.status === 200) {
+    //         const body = await response.json();
+    //         navigate('/profile')
+    //        return body;
+    //       } else {
+    //         navigate('/profile')
+    //         alert("Looks like something went wrong. Please try again.")
+    //       }
+    // }
+
+
     return (
         <div>
 
@@ -94,7 +131,7 @@ export default function Profile() {
                     </div>
 
                     <button onClick={() => navigateBack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Home</button>
-                    <button onClick={() => navigate('/slack')} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
+                    <button onClick={() => navigateSlack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
                     <SignOut></SignOut>
                 </nav>
             </div>
@@ -133,7 +170,6 @@ export default function Profile() {
 
                     </div>
                 </div>
-
                 {/* back button */}
                 {/* <button className='flex justify-left p-5 m-10 py-4 btn rounded-full bg-primary hover:bg-secondary' onClick={() => navigateBack()}> BACK </button> */}
      
@@ -142,42 +178,42 @@ export default function Profile() {
                 {/* profile input box */}
                 <div>
 
-                    <form className='flex flex-col order-1 rounded-lg shadow-lg shadow-gray-400 m-5 pt-7 h-full'>
+                    <form className='flex flex-col order-1 rounded-lg shadow-lg shadow-gray-400 m-5 pt-7 h-full' onSubmit={submitForm}>
 
                         <label className='font-semibold mx-6'>First name:</label>
                         {token ?
-                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.firstName} type="text" />
-                            : <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={user.firstName} type="text" />}
+                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.firstName} type="text" onChange={(e) => setFirstName(e.target.placeholder)}/>
+                            : <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={user.firstName} type="text" onChange={(e) => setFirstName(e.target.placeholder)} />}
 
                         <label className='font-semibold mx-6'>Last name:</label>
                         {token ?
-                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.lastName} type="text" />
-                            : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.lastName} type="text" />}
+                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.lastName} type="text" onChange={(e) => setLastName(e.target.placeholder)} />
+                            : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.lastName} type="text" onChange={(e) => setLastName(e.target.placeholder)} />}
 
 
                         <label className='font-semibold mx-6'>Empolyee ID:</label>
                         {token ?
-                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.employeeID}></input>
-                            : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.employeeID}></input>}
+                            <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.employeeID} onChange={(e) => setEmployeeID(e.target.placeholder)}></input>
+                            : <input className='block border-2 rounded-lg border-gray-400 mx-6' placeholder={user.employeeID} onChange={(e) => setEmployeeID(e.target.placeholder)}></input>}
 
                         {token ?
                         <label className='font-semibold mx-6'>Email:</label>
                         : null}
 
                         {token ?
-                        <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.email}></input>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6 pr-64' placeholder={admin.email} onChange={(e) => setEmail(e.target.placeholder)}></input>
                         : null}
 
-                        <label className='font-semibold mx-6'>Update Password:</label>
-                        <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
+                        {/* <label className='font-semibold mx-6'>Update Password:</label>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6' onChange={(e) => setUpdatePassword(e.target.placeholder)}></input> */}
 
                         <label className='font-semibold mx-6'>Position:</label>
-                        <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6' onChange={(e) => setPosition(e.target.placeholder)}></input>
 
                         <label className='font-semibold mx-6'>Store Location:</label>
-                        <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
+                        <input className='block border-2 rounded-lg border-gray-400 mx-6' onChange={(e) => setStoreLocation(e.target.placeholder)}></input>
 
-                        <button className='btn rounded-full bg-accent hover:bg-primary mt-4 w-24 ml-48'>Submit</button>
+                        <button className='btn rounded-full bg-accent hover:bg-primary mt-4 w-24 ml-48' type='submit'>Submit</button>
                     </form>
 
                 </div>

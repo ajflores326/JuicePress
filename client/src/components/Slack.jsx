@@ -60,7 +60,7 @@ const Slack = () => {
       <div className="sidebar">
         <a href="http://localhost:5173/home" className="home-button">Home</a>
         <div className="channel-info">
-          {channelInfo ? channelInfo.name : 'Loading channel info...'}
+          Channel: {channelInfo ? channelInfo.name : 'Loading channel info...'}
         </div>
         <UserList users={users} />
       </div>

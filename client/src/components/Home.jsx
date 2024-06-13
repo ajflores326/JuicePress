@@ -14,7 +14,6 @@ import DateDisplay from './DateDisplay';
 export default function Home() {
   const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
   const [announcements, setAnnouncements] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [announcementTitle, setAnnouncementTitle] = useState('');
   const [announcementContent, setAnnouncementContent] = useState('');
   const [announcementImage, setAnnouncementImage] = useState(null);
@@ -151,10 +150,6 @@ export default function Home() {
   useEffect(() => {
     getAdminUsername()
   }, [])
-
-
-
-  // const [hasRender, setRender] = useState(false);
 
    return (
     <div>

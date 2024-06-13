@@ -34,7 +34,6 @@ export default function AdminSignUp({ setToken }) {
             //save jwt to local storage
             navigate("/adminLogin")
             alert("New Admin User Created!")
-            // setToken(body.token);
         } else {
             console.log(body.message);
         }

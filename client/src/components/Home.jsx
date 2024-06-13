@@ -66,12 +66,14 @@ export default function Home() {
   const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
       method: "POST",
       headers: {
-        authorization: localStorage.getItem("jwt-token")
+        authorization: localStorage.getItem("jwt-token"),
       },
-      body: formData,
+      body: 
+      formData,
       announcementTitle,
       announcementContent
-    });
+  })
+   ;
 
     if (response.status === 200) {
       const body = await response.json();

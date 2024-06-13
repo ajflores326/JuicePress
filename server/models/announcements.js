@@ -24,6 +24,9 @@ const announcementSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  AWSLink: {
+    type: String
+  }
 });
 
 export default model("Announcement", announcementSchema);

@@ -31,7 +31,6 @@ export default function LogIn() {
       navigate('/home')
     } else {
       navigate('/signup')
-      alert("ID and/or password not found! Please sign up for an account.")
     }
   }
   return (

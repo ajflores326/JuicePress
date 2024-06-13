@@ -28,7 +28,6 @@ export default function AdminLogIn() {
             navigate('/home');
         } else {
             navigate('/adminSignup');
-            alert("ID, email and/or password not found! Please sign up for an account.")
         }
     }
 

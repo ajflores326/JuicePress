@@ -1,11 +1,7 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import user from '../../../server/models/user';
-import admin from '../../../server/models/admin';
 import { useNavigate } from "react-router-dom";
-import juice from '../images/GreenJuice.jpg';
-import profile from '../images/Profile.png';
 import JPLogo from '../images/JPLogo.png';
 import SignOut from './SignOut';
 import userIcon from '../images/userIcon.png';
@@ -32,16 +28,13 @@ export default function Profile() {
             method: "GET",
             headers: {
                 "authorization": localStorage.getItem("jwt-token")
-
             },
-
         });
 
         //getting user object
         if (response.status === 200) {
             const body = await response.json();
             setUser(body)
-
         } else {
             console.log("error");
         }
@@ -59,16 +52,13 @@ export default function Profile() {
             method: "GET",
             headers: {
                 "authorization": localStorage.getItem("jwt-tokenAdmin")
-
             },
-
         });
 
         //getting user object
         if (response.status === 200) {
             const body = await response.json();
             setAdmin(body)
-
         } else {
             console.log("error");
         }

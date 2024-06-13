@@ -8,6 +8,12 @@ import cors from "cors";
 import axios from 'axios';
 import path from "path";
 import { fileURLToPath } from "url";
+import config from './config/index.js'
+import AWS from 'aws-sdk'
+import multer from 'multer'
+import Announcement from './models/announcements.js';
+import { request } from 'http';
+// import s3Router from './controllers/routes-s3.js';
 
 // define __dirname in ES modules
 //  __filename is a URL, which it is in ES modules
@@ -80,12 +86,85 @@ const app = express();
 // const storage = multer.memoryStorage()---->MO
 // const upload = multer({ storage: storage})---->MO
 
-app.use(cors());
+app.use(cors())
 app.use(express.json());
 app.use("/", router);
 app.use("/user", userRouter)
 app.use("/admin", adminRouter)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  region: 'us-east-1',
+});
+
+const s3 = new AWS.S3();
+
+// async function createPresignedPost({ key, contentType }) {
+//   const command = new PutObjectCommand({
+//     Bucket: BUCKET_NAME,
+//     Key: key,
+//     ContentType: contentType,
+//   });
+//   const fileLink = `https://${BUCKET_NAME}.s3.${config.AWS.Region}.amazonaws.com/${key}`;
+//   const signedUrl = await getSignedUrl(s3, command, {
+//     expiresIn: 5 * 60, // 5 minutes - default is 15 mins
+//   });
+//   return { fileLink, signedUrl };
+// }
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // limit file size to 5MB
+  }
+});
+
+app.post('/upload', upload.single(), async (request, response) => {
+  // const announcementData = {
+  //   announcementTitle: request.body.announcementTitle,
+  //   announcementContent: request.body.announcementContent,
+  //   timestamp: request.body.timestamp,
+  //   AWSLink: `https://juicepress1.s3.amazonaws.com/${request.file}`
+  // };
+
+  // // if(request.files.image) {
+  // //   announcementData.image = request.files.image[0].filename;
+  // // };
+
+  // // if (request.files.video) {
+  // //   announcementData.video = request.files.video[0].filename;
+  // // };
+
+
+  // const announcement = new Announcement(announcementData);
+  // announcement.save();
+  // response.send({
+  //   message: "Announcement was successfully posted.",
+  //   announcement,
+  // });
+
+
+  const params = {
+    Bucket: 'juicepress1',
+    Key: request.file.originalname,
+    Body: request.file.buffer,
+  };
+
+  s3.upload(params, async (err, dataa) => {
+    if (err) {
+      console.error(err);
+      return response.status(500).send('Error uploading file');
+    }
+   const fileLink = `https://juicepress1.s3.amazonaws.com/${request.file.originalname}`
+    return response.send({
+            status: "success",
+            fileLink
+          });
+  });
+});
 
 //storing file by sending to s3 bucket--->MO
 // app.post("/api/posts", upload.single(""), async (req, res) => {
@@ -184,6 +263,11 @@ app.get('/channel-users', async (req, res) => {
 app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server is now listening on port ${process.env.SERVER_PORT}`)
 })
+// app.use('/api/s3', s3Router)
+
+// app.listen(config.PORT, () => {
+//     console.log(`Server listening on http://localhost:${config.PORT}`)
+// })
 
 mongoose.connect(process.env.ATLAS_CONNECTION)
 const db = mongoose.connection;

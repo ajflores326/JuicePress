@@ -39,7 +39,7 @@ export default function CreateAnnouncement({ setToken }) {
 
                 <div className="">
                     <h2>Announcement Title:</h2>
-                    <input className="block border-black input input-primary w-full max-w-xs" placeholder="Title" type="text" onChange={(e) => setAnnouncementTitle(e.target.value)}></input>
+                    <input className="block border-black input w-full max-w-xs" placeholder="Title" type="text" onChange={(e) => setAnnouncementTitle(e.target.value)}></input>
                     <h2 className="block">Content:</h2>
                     <textarea className="block textarea" onChange={(e) => setAnnouncementContent(e.target.value)}></textarea>
                 </div>

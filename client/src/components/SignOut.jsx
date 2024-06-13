@@ -24,7 +24,7 @@ function SignOut() {
         localStorage.removeItem("jwt-token")
         localStorage.removeItem("jwt-tokenAdmin")
         navigate('/')
-        }} className='btn bg-primary rounded-full hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'> Sign Out </button>
+        }} className='btn bg-blue-magic rounded-full hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'> Sign Out </button>
         </div>
     );
 };

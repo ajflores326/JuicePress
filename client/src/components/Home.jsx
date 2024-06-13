@@ -195,19 +195,19 @@ export default function Home() {
 
         {/* nav bar */}
         <div className="content relative">
-          <nav className='flex flex-col nav1 font-semibold bg-accent py-96 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
+          <nav className='flex flex-col nav1 font-semibold bg-blush py-96 space-y-12' style={{ position: 'fixed', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
 
             <div className='flex-row'>
               <img src={JPLogo} style={{ position: 'fixed', left: 17, top: '26%', transform: 'translateY(-50%)' }} alt="Juice Press Logo" width="85%" height="85%"></img>
             </div>
 
             <div className='flex flex-col space-y-9'>
-              <button onClick={() => navigateProfile()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
-              <button onClick={() => navigateSlack()} className='block btn rounded-full bg-primary hover:bg-secondary outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
+              <button onClick={() => navigateProfile()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
+              <button onClick={() => navigateSlack()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
               <SignOut></SignOut>
               {token ?
                 <>
-                  <button className='block btn bg-primary rounded-full hover:bg-secondary outline outline-offset-1 outline-black w-42 mx-14' onClick={handleCreateAnnouncement}> Create Post </button>
+                  <button className='block btn bg-blue-magic rounded-full hover:bg-clean-green outline outline-offset-1 outline-black w-42 mx-14' onClick={handleCreateAnnouncement}> Create Post </button>
                   <dialog className='modal-box' id="my_modal_2">
                     <form onSubmit={handleAnnouncementSubmit}>
                       <label className='block'>Title:</label>
@@ -241,9 +241,9 @@ export default function Home() {
                         accept='video/*'
                         onChange={(e) => setAnnouncementVideo(e.target.files[0])}
                       />
-                      <button className='btn bg-primary rounded-full px-7 py-3 hover:bg-secondary font-semibold mt-3 ml-33' type='submit'>Submit</button>
+                      <button className='btn bg-blue-magic rounded-full px-7 py-3 hover:bg-mango-madness font-semibold mt-3 ml-33' type='submit'>Submit</button>
                     </form>
-                    <button className='btn bg-secondary rounded-full px-6 py-3 hover:bg-primary font-semibold mt-3 ml-33' onClick={() => document.getElementById('my_modal_2').close()}>Close</button>
+                    <button className='btn bg-clean-green rounded-full px-6 py-3 hover:bg-mango-madness font-semibold mt-3 ml-33' onClick={() => document.getElementById('my_modal_2').close()}>Close</button>
                   </dialog>
                 </>
                 : ""}

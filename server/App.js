@@ -123,33 +123,33 @@ const upload = multer({
 });
 
 app.post('/upload', upload.single(), async (request, response) => {
-  const announcementData = {
-    announcementTitle: request.body.announcementTitle,
-    announcementContent: request.body.announcementContent,
-    timestamp: request.body.timestamp,
-    AWSLink: `https://juicepress1.s3.amazonaws.com/${request.file}`
-  };
-
-  // if(request.files.image) {
-  //   announcementData.image = request.files.image[0].filename;
+  // const announcementData = {
+  //   announcementTitle: request.body.announcementTitle,
+  //   announcementContent: request.body.announcementContent,
+  //   timestamp: request.body.timestamp,
+  //   AWSLink: `https://juicepress1.s3.amazonaws.com/${request.file}`
   // };
 
-  // if (request.files.video) {
-  //   announcementData.video = request.files.video[0].filename;
-  // };
+  // // if(request.files.image) {
+  // //   announcementData.image = request.files.image[0].filename;
+  // // };
+
+  // // if (request.files.video) {
+  // //   announcementData.video = request.files.video[0].filename;
+  // // };
 
 
-  const announcement = new Announcement(announcementData);
-  announcement.save();
-  response.send({
-    message: "Announcement was successfully posted.",
-    announcement,
-  });
+  // const announcement = new Announcement(announcementData);
+  // announcement.save();
+  // response.send({
+  //   message: "Announcement was successfully posted.",
+  //   announcement,
+  // });
 
 
   const params = {
     Bucket: 'juicepress1',
-    Key: request.file.filename,
+    Key: request.file.originalname,
     Body: request.file.buffer,
   };
 

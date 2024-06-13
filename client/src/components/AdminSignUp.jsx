@@ -15,7 +15,7 @@ export default function AdminSignUp({ setToken }) {
         //stops page from reloading 
         event.preventDefault();
         //sends empolyeeID, password, and email to backend
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminSignup`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}admin/adminSignup`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -36,11 +36,13 @@ export default function AdminSignUp({ setToken }) {
             alert("New Admin User Created!")
             // setToken(body.token);
         } else {
-            console.log(body.message);
+            console.log(`error`);
         }
 
     }
-    return (
+
+    
+return (
         <div>
             <form onSubmit={submitSignUp} className='h-screen flex flex-col items-center justify-center border rounded-none space-y-5'>
                 <h1 className="text-4xl font-semibold underline">Admin Sign Up</h1>

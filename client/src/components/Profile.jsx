@@ -33,7 +33,7 @@ export default function Profile() {
     async function getUsername() {
 
         //using fetch to obtain user last name and first name from database
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}user/username`, {
             method: "GET",
             headers: {
                 "authorization": localStorage.getItem("jwt-token")
@@ -60,7 +60,7 @@ export default function Profile() {
     async function getAdminUsername() {
 
         //using fetch to obtain user last name and first name from database
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}admin/adminUsername`, {
             method: "GET",
             headers: {
                 "authorization": localStorage.getItem("jwt-tokenAdmin")

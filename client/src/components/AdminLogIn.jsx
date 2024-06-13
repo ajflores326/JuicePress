@@ -10,7 +10,7 @@ export default function AdminLogIn() {
 
     async function submitLogIn(event) {
         event.preventDefault();
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminLogin`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}admin/adminLogin`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

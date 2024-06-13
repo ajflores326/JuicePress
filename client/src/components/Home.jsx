@@ -35,7 +35,7 @@ export default function Home() {
   //fetching all announcements from database
   async function fetchData() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcements`,{
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}announcements`,{
         headers: {
           authorization: localStorage.getItem('jwt-token')
         }
@@ -63,7 +63,7 @@ export default function Home() {
     if (announcementVideo) formData.append("video", announcementVideo);
 
 
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
+  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}createannouncement`, {
       method: "POST",
       headers: {
         authorization: localStorage.getItem("jwt-token"),
@@ -105,7 +105,7 @@ export default function Home() {
   async function getUsername() {
 
     //using fetch to obtain user last name and first name from database
-    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}user/username`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("jwt-token")
@@ -129,7 +129,7 @@ export default function Home() {
   async function getAdminUsername() {
 
     //using fetch to obtain user last name and first name from database
-    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}admin/adminUsername`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("jwt-tokenAdmin")
@@ -178,12 +178,12 @@ export default function Home() {
             <div key={index} className="card lg:card-side bg-base-100 shadow-xl m-4 w-1/2">
               {announcement.image && (
                 <figure className="flex-shrink-0 w-1/3">
-                  <img src={`${import.meta.env.VITE_SERVER_URL}/uploads/${announcement.image}`} alt="Announcement" className="object-cover w-full h-48" />
+                  <img src={`${import.meta.env.VITE_SERVER_URL}uploads/${announcement.image}`} alt="Announcement" className="object-cover w-full h-48" />
                 </figure>
               )}
               {announcement.video && (
                 <figure className="flex-shrink-0 w-1/3">
-                  <video controls src={`${import.meta.env.VITE_SERVER_URL}/uploads/${announcement.video}`} className="object-cover w-full h-48"></video>
+                  <video controls src={`${import.meta.env.VITE_SERVER_URL}uploads/${announcement.video}`} className="object-cover w-full h-48"></video>
                 </figure>
               )}
               <div className="card-body">

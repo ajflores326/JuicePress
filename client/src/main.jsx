@@ -16,6 +16,7 @@ import CreateAnnouncement from './components/CreateAnnouncement.jsx';
 import Profile from './components/Profile.jsx';
 import AllAnnouncements from './components/AllAnnouncements.jsx';
 import Slack from './components/Slack.jsx';
+import Learning from './components/Learning.jsx'
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,12 @@ const router = createBrowserRouter([
   {
     path: "/slack",
     element: <Slack></Slack> 
+  },
+  {
+    path: "/learning",
+    element: <Learning></Learning> 
   }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

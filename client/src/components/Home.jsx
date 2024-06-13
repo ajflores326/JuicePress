@@ -22,6 +22,12 @@ export default function Home() {
   const [admin, setAdmin] = useState({});
   const navigate = useNavigate();
 
+  function navigateLearning() {
+    navigate('/learning')
+  }
+
+
+
   function navigateProfile() {
     navigate('/profile')
   }
@@ -34,12 +40,12 @@ export default function Home() {
   //fetching all announcements from database
   async function fetchData() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcements`,{
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcements`, {
         headers: {
           authorization: localStorage.getItem('jwt-token')
         }
       });
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
@@ -62,21 +68,20 @@ export default function Home() {
     if (announcementVideo) formData.append("video", announcementVideo);
 
 
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
       method: "POST",
       headers: {
         authorization: localStorage.getItem("jwt-token"),
       },
-      body: 
-      formData,
+      body:
+        formData,
       announcementTitle,
       announcementContent
-  })
-   ;
+    })
+      ;
 
     if (response.status === 200) {
       const body = await response.json();
-      alert(`Your announcement has been saved`);
       fetchData();
       return body.announcement;
     } else {
@@ -86,7 +91,7 @@ export default function Home() {
     }
   }
 
-   const handleCreateAnnouncement = () => {
+  const handleCreateAnnouncement = () => {
     setAnnouncementTitle('');
     setAnnouncementContent('');
     setAnnouncementImage(null);
@@ -151,18 +156,18 @@ export default function Home() {
     getAdminUsername()
   }, [])
 
-   return (
+  return (
     <div>
       <div>
-        
+
         {token ?
           <h1 className="flex justify-center font-bold text-2xl mt-3">"Welcome {admin.firstName} {admin.lastName}!"</h1>
           : <h1 className="flex justify-center font-bold text-2xl mt-5">"Welcome {user.firstName} {user.lastName}!"</h1>}
-       
-       <div>
-        <p className='flex justify-center text-2xl font-bold py-2'><DateDisplay /> </p>
-       </div>
-       
+
+        <div>
+          <p className='flex justify-center text-2xl font-bold py-2'><DateDisplay /> </p>
+        </div>
+
         <div className='flex justify-center text-4xl'>
           <h2 className='block font-bold'>Important Announcements</h2>
         </div>
@@ -182,7 +187,7 @@ export default function Home() {
                 </figure>
               )}
               <div className="card-body">
-              <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
+                <h3 className='font-bold text-xl'>{announcement.announcementTitle}</h3>
                 <p>{announcement.announcementContent}</p>
                 {announcement.timestamp && <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>}
               </div>
@@ -201,7 +206,7 @@ export default function Home() {
             <div className='flex flex-col space-y-9'>
               <button onClick={() => navigateProfile()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>Profile</button>
               <button onClick={() => navigateSlack()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
-              <button className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>E-Learning</button> 
+              <button onClick={() => navigateLearning()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>E-Learning</button>
               <SignOut></SignOut>
               {token ?
                 <>

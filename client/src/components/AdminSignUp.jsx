@@ -33,7 +33,7 @@ export default function AdminSignUp({ setToken }) {
             const body = await response.json();
             //save jwt to local storage
             navigate("/adminLogin")
-            alert("New Admin User Created!")
+           
         } else {
             console.log(body.message);
         }

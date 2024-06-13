@@ -30,6 +30,7 @@ router.get("/announcements", async (request, response) => {
   }
 });
 
+
 router.post("/createannouncement", upload.fields([{name: "image"}, {name: "video"}]), async (request, response) => {
   try {
     const announcementData = {

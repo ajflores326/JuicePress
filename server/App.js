@@ -11,6 +11,8 @@ import { fileURLToPath } from "url";
 import config from './config/index.js'
 import AWS from 'aws-sdk'
 import multer from 'multer'
+import Announcement from './models/announcements.js';
+import { request } from 'http';
 // import s3Router from './controllers/routes-s3.js';
 
 // define __dirname in ES modules
@@ -84,9 +86,7 @@ const app = express();
 // const storage = multer.memoryStorage()---->MO
 // const upload = multer({ storage: storage})---->MO
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use(cors())
 app.use(express.json());
 app.use("/", router);
 app.use("/user", userRouter)
@@ -102,6 +102,18 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
+// async function createPresignedPost({ key, contentType }) {
+//   const command = new PutObjectCommand({
+//     Bucket: BUCKET_NAME,
+//     Key: key,
+//     ContentType: contentType,
+//   });
+//   const fileLink = `https://${BUCKET_NAME}.s3.${config.AWS.Region}.amazonaws.com/${key}`;
+//   const signedUrl = await getSignedUrl(s3, command, {
+//     expiresIn: 5 * 60, // 5 minutes - default is 15 mins
+//   });
+//   return { fileLink, signedUrl };
+// }
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -110,20 +122,47 @@ const upload = multer({
   }
 });
 
-app.post('/upload', upload.single('file'), (req, res) => {
-  const params = {
-    Bucket: 'juicepress1',
-    Key: req.file.originalname,
-    Body: req.file.buffer,
+app.post('/upload', upload.single(), async (request, response) => {
+  const announcementData = {
+    announcementTitle: request.body.announcementTitle,
+    announcementContent: request.body.announcementContent,
+    timestamp: request.body.timestamp,
+    AWSLink: `https://juicepress1.s3.amazonaws.com/${request.file}`
   };
 
-  s3.upload(params, (err, data) => {
+  // if(request.files.image) {
+  //   announcementData.image = request.files.image[0].filename;
+  // };
+
+  // if (request.files.video) {
+  //   announcementData.video = request.files.video[0].filename;
+  // };
+
+
+  const announcement = new Announcement(announcementData);
+  announcement.save();
+  response.send({
+    message: "Announcement was successfully posted.",
+    announcement,
+  });
+
+
+  const params = {
+    Bucket: 'juicepress1',
+    Key: request.file.filename,
+    Body: request.file.buffer,
+  };
+
+  s3.upload(params, async (err, dataa) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('Error uploading file');
+      return response.status(500).send('Error uploading file');
     }
-
-    res.send('File uploaded successfully');
+   const fileLink = `https://juicepress1.s3.amazonaws.com/${request.file.originalname}`
+    return response.send({
+            status: "success",
+            fileLink
+          });
   });
 });
 
@@ -226,9 +265,9 @@ app.listen(process.env.SERVER_PORT, () => {
 })
 // app.use('/api/s3', s3Router)
 
-app.listen(config.PORT, () => {
-    console.log(`Server listening on http://localhost:${config.PORT}`)
-})
+// app.listen(config.PORT, () => {
+//     console.log(`Server listening on http://localhost:${config.PORT}`)
+// })
 
 mongoose.connect(process.env.ATLAS_CONNECTION)
 const db = mongoose.connection;

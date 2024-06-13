@@ -95,8 +95,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 
 AWS.config.update({
-  accessKeyId: 'AKIAYS2NV5RVGMFAKB6A',
-  secretAccessKey: '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',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
   region: 'us-east-1',
 });
 

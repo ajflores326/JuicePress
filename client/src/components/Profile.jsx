@@ -14,7 +14,11 @@ export default function Profile() {
     const navigate = useNavigate()
 
     function navigateBack() {
-        navigate('/home')
+        navigate('/home');
+    }
+
+    function navigateLearning() {
+        navigate('/learning');
     }
 
     function navigateSlack() {
@@ -86,6 +90,7 @@ export default function Profile() {
                     </div>
 
                     <button onClick={() => navigateBack()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>Home</button>
+                    <button onClick={() => navigateLearning()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>E-Learning</button>
                     <button onClick={() => navigateSlack()} className='block btn rounded-full bg-blue-magic hover:bg-clean-green outline outline-offset-1 outline-black w-36 mx-14'>Slack</button>
                     <SignOut></SignOut>
                 </nav>
@@ -160,7 +165,7 @@ export default function Profile() {
                         <label className='font-semibold mx-6'>Store Location:</label>
                         <input className='block border-2 rounded-lg border-gray-400 mx-6'></input>
 
-                        <button className='btn rounded-full bg-clean-green hover:bg-mango-madness mt-4 w-24 ml-48' type='submit'>Submit</button>
+                        <button className='btn rounded-full bg-clean-green hover:bg-mango-madness mt-4 w-24 ml-48' type='submit'>Update</button>
                     </form>
 
                 </div>

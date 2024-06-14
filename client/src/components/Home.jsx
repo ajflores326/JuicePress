@@ -23,15 +23,12 @@ export default function Home() {
   const navigate = useNavigate();
 
   function navigateLearning() {
-    navigate('/learning')
+    navigate('/learning');
   }
-
-
 
   function navigateProfile() {
-    navigate('/profile')
+    navigate('/profile');
   }
-
 
   function navigateSlack() {
     navigate('/slack');

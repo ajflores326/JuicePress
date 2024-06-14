@@ -54,13 +54,18 @@ export default function Home() {
 
   // creates announcements and appends all of the main properties 
   // announcementTitle, announcementTitle,timestamp, video, image
-  async function createAnnouncement() {
-    const formData = new FormData;
-    formData.append("announcementTitle", announcementTitle);
-    formData.append("announcementContent", announcementContent);
-    formData.append("timestamp", new Date().toISOString())
-    if (announcementImage) formData.append("image", announcementImage);
-    if (announcementVideo) formData.append("video", announcementVideo);
+  async function createAnnouncement(event) {
+    const formData = new FormData(event.target);
+    // formData.append("announcementTitle", announcementTitle);
+    // formData.append("announcementContent", announcementContent);
+    // formData.append("timestamp", new Date().toISOString())
+    // if (announcementImage) formData.append("image", announcementImage);
+    // if (announcementVideo) formData.append("video", announcementVideo);
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+    console.log(event.target)
+    console.log(formData)
 
 
   const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/createannouncement`, {
@@ -70,8 +75,8 @@ export default function Home() {
       },
       body: 
       formData,
-      announcementTitle,
-      announcementContent
+      // announcementTitle,
+      // announcementContent
   })
    ;
 
@@ -80,6 +85,7 @@ export default function Home() {
       alert(`Your announcement has been saved`);
       fetchData();
       return body.announcement;
+      
     } else {
       const body = await response.json();
       console.log(body.message);
@@ -97,7 +103,7 @@ export default function Home() {
 
   const handleAnnouncementSubmit = async (e) => {
     e.preventDefault();
-    await createAnnouncement();
+    await createAnnouncement(e);
     document.getElementById('my_modal_2').close();
   };
 
@@ -214,6 +220,7 @@ export default function Home() {
                     <form onSubmit={handleAnnouncementSubmit}>
                       <label className='block'>Title:</label>
                       <input
+                        name = 'uploadedTitle'
                         className='rounded py-2 px-4 border border-black m-2 w-96'
                         placeholder='Announcement Title'
                         value={announcementTitle}
@@ -223,6 +230,7 @@ export default function Home() {
 
                       <label className='block'>Content:</label>
                       <textarea
+                        name = 'uploadedContent'
                         className='rounded py-2 px-4 border border-black m-2 w-96 h-80'
                         placeholder='Announcement Content'
                         value={announcementContent}
@@ -231,6 +239,7 @@ export default function Home() {
                       />
                       <p>Upload Image:</p>
                       <input
+                        name = 'uploadedImage'
                         className='block rounded py-2 px-4 border border-black m-2'
                         type='file'
                         accept='image/*'
@@ -238,6 +247,7 @@ export default function Home() {
                       />
                       <p>Upload Video:</p>
                       <input
+                        name = 'uploadedVideo'
                         className='block rounded py-2 px-4 border border-black m-2'
                         type='file'
                         accept='video/*'

@@ -5,6 +5,7 @@ import userValidationMiddleware from "../middleware/validationMiddleware.js";
 import User from "../models/user.js"
 import multer from "multer";
 import path from "path";
+import announcements from "../models/announcements.js";
 
 
 const router = Router();
@@ -31,6 +32,18 @@ router.get("/announcements", async (request, response) => {
   }
 });
 
+// fetch a single annoucement based on ID
+router.get("/announcements/:id", async (request, response)=>{
+  try {
+    const annoucement = await Announcement.findById(request.params.id);
+    if(!annoucement){
+      return response.status(404).send({message: "Announcement not found"})
+    }
+    response.send(annoucement)
+  } catch (error) {
+      response.status(500).send({message: error.message});
+  }
+});
 
 router.post("/createannouncement", upload.fields([{name: "image"}, {name: "video"}]), async (request, response) => {
   try {
@@ -62,4 +75,48 @@ router.post("/createannouncement", upload.fields([{name: "image"}, {name: "video
   }
 });
 
+
+router.put("/announcement/:id", upload.fields([{name: "image"}, {name: "video"}]), async (request, response)=>{
+    try {
+      const annoucementData = {
+        announcementTitle: request.body.annoucementTitle,
+        announcementContent: request.body.announcementContent,
+        timestamp: request.body.timestamp,
+      };
+
+      if(request.files.image){
+        annoucementData.image = request.files.image[0].filename;
+      };
+
+      if(request.files.video) {
+        annoucementData.video = request.files.video[0].filename;
+      };
+
+      const announcement = await Announcement.findByIdAndUpdate(request.params.id, announcementData, {new: true});
+      if(!annoucement){
+        return response.status(404).send({message: "Announcement not found"});
+      }
+      response.send({
+        message: "Announcement was successfully updated.",
+        announcement,
+      });
+    } catch (error) {
+        response.status(500).send({
+          message: error.message,
+        });
+    }
+});
+
+
+router.delete("/announcement/:id", async(request, response)=>{
+  try {
+    const announcement = await Announcement.findByIdAndDelete(request.params.id);
+    if(!announcement) {
+      return response.status(404).send({message: "Announcement not found"});
+    }
+    response.send({message: "Announcement was successfully deleted."});
+  } catch (error) {
+    response.status(500).send({message: error.message});
+  }
+});
 export default router;

@@ -58,7 +58,7 @@ const Slack = () => {
   return (
     <div className="slack-container">
       <div className="sidebar">
-        <a href="http://localhost:5173/home" className="home-button">Return Home</a>
+        <button onClick={() => window.location.href = 'http://localhost:5173/home'} className='home-button'>Home</button>
         <div className="channel-info">
           Channel: {channelInfo ? channelInfo.name : 'Loading channel info...'}
         </div>

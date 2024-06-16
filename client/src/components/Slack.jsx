@@ -21,7 +21,7 @@ const Slack = () => {
           timestamp: msg.ts ? new Date(parseFloat(msg.ts) * 1000).toISOString() : new Date().toISOString(),
         }));
 
-        // Sort messages by timestamp in ascending order
+        // Sort messages by timestamp in descending order
         const sortedMessages = messagesWithDefaults.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
         
         setMessages(sortedMessages);

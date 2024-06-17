@@ -17,7 +17,7 @@ import Profile from './components/Profile.jsx';
 import AllAnnouncements from './components/AllAnnouncements.jsx';
 import Slack from './components/Slack.jsx';
 import Learning from './components/Learning.jsx'
-import EditAnnouncement from './components/EditAnnouncement.jsx';
+// import EditAnnouncement from './components/EditAnnouncement.jsx';
 
 const router = createBrowserRouter([
   {
@@ -59,12 +59,7 @@ const router = createBrowserRouter([
   {
     path: "/learning",
     element: <Learning></Learning> 
-  },
-  {
-    path:"/editannouncement/:id",
-    element: <EditAnnouncement></EditAnnouncement>
   }
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

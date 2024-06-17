@@ -299,7 +299,7 @@ export default function Home() {
                     <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>
                   )}
 
-                  {tokenAdmin && (
+                      {tokenAdmin && (
                     <>
                      <button
                       onClick={() => handleEditClick(announcement)}

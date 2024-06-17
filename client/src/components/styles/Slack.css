@@ -7,7 +7,7 @@
 
 .sidebar {
   width: 18%;
-  background-color: #3f0e40;
+  background-color: #4A154B;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
 
 .home-button {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: #1D1C1D;
   background-color: rgb(255 255 255);
   padding: 10px;
   text-align: center;

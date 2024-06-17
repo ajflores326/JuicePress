@@ -7,7 +7,11 @@ import DocsIcon from '../images/docIcon.png';
 import ManualsIcon from '../images/manualIcon.png'
 import VideoIcon from '../images/videoIcon.png';
 
+
 export default function Learning() {
+    const [user, setUser] = useState({});
+    const [admin, setAdmin] = useState({});
+    const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
     const navigate = useNavigate();
 
     function navigateBack() {
@@ -20,13 +24,83 @@ export default function Learning() {
     function navigateSlack() {
         navigate('/slack');
     }
+    async function getUsername() {
+        const token = localStorage.getItem("jwt-token");
+        console.log("User token:", token);
+    
+         if (!token) {
+            console.log("No token found in localStorage");
+            return;
+        }
+    
+        //using fetch to obtain user last name and first name from database
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
+          method: "GET",
+          headers: {
+            authorization: localStorage.getItem('jwt-token')
+          },
+        });
+    
+        //getting user object
+        if (response.status === 200) {
+          const body = await response.json();
+          setUser(body)
+    
+        } else {
+          console.log("error");
+        }
+      }
+      //once user is logged in first and last name of user will be displayed on home pg
+      useEffect(() => {
+        getUsername()
+      }, [])
+    
+      async function getAdminUsername() {
+        const tokenAdmin = localStorage.getItem("jwt-tokenAdmin");
+        console.log("Admin Token:", tokenAdmin);
+    
+        //using fetch to obtain user last name and first name from database
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
+          method: "GET",
+          headers: {
+            authorization: localStorage.getItem("jwt-tokenAdmin")
+          },
+    
+        });
+    
+        //getting user object
+        if (response.status === 200) {
+          const body = await response.json();
+          setAdmin(body)
+    
+        } else {
+          console.log("error");
+        }
+      }
+    
+      //once user is logged in first and last name of user will be displayed on home pg
+      useEffect(() => {
+        getAdminUsername()
+      }, [])
+    
 
     return (
         <div>
 
             {/* header */}
             <div className='flex justify-center text-4xl mt-7 ml-56'>
-                <h1 className='block font-bold'>E-Learning</h1>
+                {/* <h1 className='block font-bold'>E-Learning</h1> */}
+                {token ? (
+          <div className="flex justify-center font-bold text-2xl mt-3">
+            "Welcome to E-Learning, 
+             {admin.firstName} {admin.lastName}!"
+          </div>
+        ) : (
+          <div className="flex justify-center font-bold text-2xl mt-5">
+            "Welcome to E-Learning, 
+             {user.firstName} {user.lastName}!"
+          </div>
+        )}
             </div>
 
 

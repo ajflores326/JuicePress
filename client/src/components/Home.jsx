@@ -10,8 +10,6 @@ import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import DateDisplay from './DateDisplay';
-import editIcon from '../images/editIcon.png';
-import trashIcon from '../images/trashIcon.png';
 
 // import AllAnnouncements  from './AllAnnouncements';
 
@@ -186,7 +184,7 @@ export default function Home() {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${token}`
+        authorization: localStorage.getItem("jwt-token")
       },
     });
 
@@ -212,7 +210,7 @@ export default function Home() {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${tokenAdmin}`
+        authorization: localStorage.getItem("jwt-tokenAdmin")
       },
 
     });
@@ -285,18 +283,17 @@ export default function Home() {
                   )}
                   <button
                     onClick={() => handleEditClick(announcement)}
-                    className="flex flex-row justify-end"
+                    className="btn bg-yellow-500 hover:bg-yellow-600 text-white mr-2"
                   >
-                    <img src={editIcon} alt="pen icon" width="8%" height="8%"></img>
-                    {/* Edit button*/}
+                    Edit
                   </button>
                   <button
                     onClick={() => handleDeleteClick(announcement._id)}
-                    className='flex flex-row justify-end'
+                    className="btn bg-red-500 hover:bg-red-600 text-white"
                   >
-                    <img src={trashIcon} alt="trash icon" width="10%" height="10%"></img>
-                    {/* Delete button*/}
+                    Delete
                   </button>
+
                 </div>
               </div>
             </div>

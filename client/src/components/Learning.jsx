@@ -48,7 +48,7 @@ export default function Learning() {
             <div>
 
                 {/* video section */}
-                <div className='flex justify-center ml-48'>
+                <div className='flex justify-center ml-48 mt-7'>
                     <img src={VideoIcon} alt="Video Icon" width="13%" height="13%"></img>
                 </div>
 

@@ -10,12 +10,16 @@ import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import DateDisplay from './DateDisplay';
+import editIcon from '../images/editIcon.png';
+import trashIcon from '../images/trashIcon.png';
 
 // import AllAnnouncements  from './AllAnnouncements';
 
 
 
 export default function Home() {
+  const [tokenAdmin, setTokenAdmin] = useState(localStorage.getItem("jwt-tokenAdmin"));
+  const [tokenUser, setTokenUser] = useState(localStorage.getItem("jwt-token"));
   const [token, setToken] = useState(localStorage.getItem("jwt-tokenAdmin"));
   const [announcements, setAnnouncements] = useState([]);
   const [announcementTitle, setAnnouncementTitle] = useState('');
@@ -24,16 +28,19 @@ export default function Home() {
   const [announcementVideo, setAnnouncementVideo] = useState(null);
   const [user, setUser] = useState({});
   const [admin, setAdmin] = useState({});
+  const [editingAnnouncement, setEditingAnnouncement] = useState(null)
   const navigate = useNavigate();
 
+
     useEffect(() => {
-    fetchData();
-    if (token) {
-      getAdminUsername();
-    } else {
-      getUsername();
-    }
-  }, [token]);
+        fetchData();
+        if (tokenAdmin) {
+            getAdminUsername();
+        } else if (tokenUser) {
+            getUsername();
+        }
+    }, [tokenAdmin, tokenUser]);
+
 
   function navigateLearning() {
     navigate('/learning');
@@ -63,7 +70,7 @@ export default function Home() {
     } catch (error) {
       console.log("error fetching data:", error)
     }
-  } useEffect(() => {
+  }useEffect(() => {
     fetchData();
   }, []);
 
@@ -85,10 +92,9 @@ export default function Home() {
       },
       body:
         formData,
-      announcementTitle,
-      announcementContent
-    })
-      ;
+      // announcementTitle,
+      // announcementContent
+    });
 
     if (response.status === 200) {
       const body = await response.json();
@@ -99,32 +105,10 @@ export default function Home() {
       console.log(body.message);
       return null;
     }
-  }
-
-  const handleCreateAnnouncement = () => {
-    setAnnouncementTitle('');
-    setAnnouncementContent('');
-    setAnnouncementImage(null);
-    setAnnouncementVideo(null);
-    document.getElementById('my_modal_2').showModal();
-  }
-
-  const handleAnnouncementSubmit = async (e) => {
-    e.preventDefault();
-    await createAnnouncement();
-    document.getElementById('my_modal_2').close();
   };
 
-    const handleEditClick = (announcement) => {
-    setEditingAnnouncement(announcement);
-    setAnnouncementTitle(announcement.announcementTitle);
-    setAnnouncementContent(announcement.announcementContent);
-    setAnnouncementImage(null);
-    setAnnouncementVideo(null);
-    document.getElementById('my_modal_2').showModal();
-  };
 
-  const updateAnnouncement = async () => {
+   const updateAnnouncement = async () => {
     const formData = new FormData;
     formData.append("announcementTitle", announcementTitle);
     formData.append("announcementContent", announcementContent);
@@ -133,7 +117,7 @@ export default function Home() {
     if (announcementVideo) formData.append("video", announcementVideo);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcment/${editingAnnouncment._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcement/${editingAnnouncement._id}`, {
         method: 'PUT',
         headers: {
           authorization: `Bearer ${localStorage.getItem('jwt-token')}`
@@ -141,9 +125,14 @@ export default function Home() {
         body: formData
       });
 
+      const responseBody = await response.text();
+
       if(response.ok){
         fetchData();
+        setEditingAnnouncement(null)
       }else{
+        console.log("Error updating announcement. Status:", response.status);
+        console.log("Response body:", responseBody);
         console.log('Error updating announcement');
       }
     } catch (error) {
@@ -151,10 +140,38 @@ export default function Home() {
     }
   };
 
+  const handleCreateAnnouncement = () => {
+    setEditingAnnouncement(null);
+    setAnnouncementTitle('');
+    setAnnouncementContent('');
+    setAnnouncementImage(null);
+    setAnnouncementVideo(null);
+    document.getElementById('my_modal_2').showModal();
+  }
 
+  const handleEditClick = (announcement) => {
+    setEditingAnnouncement(announcement);
+    setAnnouncementTitle(announcement.announcementTitle);
+    setAnnouncementContent(announcement.announcementContent);
+    setAnnouncementImage(null);
+    setAnnouncementVideo(null);
+    document.getElementById('my_modal_2').showModal();
+  };
+
+  const handleAnnouncementSubmit = async (e) => {
+    e.preventDefault();
+    if(editingAnnouncement){
+      await updateAnnouncement();
+    } else {
+      await createAnnouncement();
+    }
+    document.getElementById('my_modal_2').close();
+  };
+
+   
   const handleDeleteClick = async (id) =>{
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcement/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcements/${id}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('jwt-token')}`
@@ -184,7 +201,7 @@ export default function Home() {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
       method: "GET",
       headers: {
-        authorization: localStorage.getItem("jwt-token")
+        authorization: localStorage.getItem('jwt-token')
       },
     });
 
@@ -233,7 +250,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        {token ? (
+        {tokenAdmin ? (
           <h1 className="flex justify-center font-bold text-2xl mt-3">
             "Welcome {admin.firstName} {admin.lastName}!"
           </h1>
@@ -281,18 +298,25 @@ export default function Home() {
                   {announcement.timestamp && (
                     <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>
                   )}
-                  <button
-                    onClick={() => handleEditClick(announcement)}
-                    className="btn bg-yellow-500 hover:bg-yellow-600 text-white mr-2"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDeleteClick(announcement._id)}
-                    className="btn bg-red-500 hover:bg-red-600 text-white"
-                  >
-                    Delete
-                  </button>
+
+                  {tokenAdmin && (
+                    <>
+                     <button
+                      onClick={() => handleEditClick(announcement)}
+                      className="flex flex-row justify-end"
+                    >
+                      <img src={editIcon} alt="pen icon" width="8%" height="8%"></img>
+                      {/* Edit button*/}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteClick(announcement._id)}
+                      className='flex flex-row justify-end'
+                    >
+                      <img src={trashIcon} alt="trash icon" width="10%" height="10%"></img>
+                      {/* Delete button*/}
+                    </button>
+                    </>
+                  )}
 
                 </div>
               </div>

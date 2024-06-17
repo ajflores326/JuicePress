@@ -299,7 +299,8 @@ export default function Home() {
                     <p>{formatDistanceToNow(parseISO(announcement.timestamp))} ago</p>
                   )}
 
-                  {tokenAdmin && (
+                      {tokenAdmin && (
+                    <>
                      <button
                       onClick={() => handleEditClick(announcement)}
                       className="flex flex-row justify-end"
@@ -314,6 +315,7 @@ export default function Home() {
                       <img src={trashIcon} alt="trash icon" width="10%" height="10%"></img>
                       {/* Delete button*/}
                     </button>
+                    </>
                   )}
 
                 </div>

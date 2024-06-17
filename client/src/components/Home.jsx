@@ -10,6 +10,8 @@ import user from "../../../server/models/user"
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import DateDisplay from './DateDisplay';
+import editIcon from '../images/editIcon.png';
+import trashIcon from '../images/trashIcon.png';
 
 // import AllAnnouncements  from './AllAnnouncements';
 
@@ -283,15 +285,17 @@ export default function Home() {
                   )}
                   <button
                     onClick={() => handleEditClick(announcement)}
-                    className="btn bg-yellow-500 hover:bg-yellow-600 text-white mr-2"
+                    className="flex flex-row justify-end"
                   >
-                    Edit
+                    <img src={editIcon} alt="pen icon" width="8%" height="8%"></img>
+                    {/* Edit button*/}
                   </button>
                   <button
                     onClick={() => handleDeleteClick(announcement._id)}
-                    className="btn bg-red-500 hover:bg-red-600 text-white"
+                    className='flex flex-row justify-end'
                   >
-                    Delete
+                    <img src={trashIcon} alt="trash icon" width="10%" height="10%"></img>
+                    {/* Delete button*/}
                   </button>
                 </div>
               </div>

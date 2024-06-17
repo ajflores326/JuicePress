@@ -89,14 +89,14 @@ export default function Learning() {
 
             {/* header */}
             <div className='flex justify-center text-4xl mt-7 ml-56'>
-                {/* <h1 className='block font-bold'>E-Learning</h1> */}
+                
                 {token ? (
-          <div className="flex justify-center font-bold text-2xl mt-3">
+          <div className="flex justify-center font-bold text-3xl mt-3">
             "Welcome to E-Learning, {"\t"}
              {admin.firstName} {admin.lastName}!"
           </div>
         ) : (
-          <div className="flex justify-center font-bold text-2xl mt-5">
+          <div className="flex justify-center font-bold text-3xl mt-5">
             "Welcome to E-Learning, {"\t"}
             {user.firstName} {user.lastName}!"
           </div>

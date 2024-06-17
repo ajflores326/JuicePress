@@ -92,13 +92,13 @@ export default function Learning() {
                 {/* <h1 className='block font-bold'>E-Learning</h1> */}
                 {token ? (
           <div className="flex justify-center font-bold text-2xl mt-3">
-            "Welcome to E-Learning, 
+            "Welcome to E-Learning, {"\t"}
              {admin.firstName} {admin.lastName}!"
           </div>
         ) : (
           <div className="flex justify-center font-bold text-2xl mt-5">
-            "Welcome to E-Learning, 
-             {user.firstName} {user.lastName}!"
+            "Welcome to E-Learning, {"\t"}
+            {user.firstName} {user.lastName}!"
           </div>
         )}
             </div>

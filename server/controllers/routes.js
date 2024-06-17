@@ -78,22 +78,22 @@ router.post("/createannouncement", upload.fields([{name: "image"}, {name: "video
 
 router.put("/announcement/:id", upload.fields([{name: "image"}, {name: "video"}]), async (request, response)=>{
     try {
-      const annoucementData = {
+      const announcementData = {
         announcementTitle: request.body.annoucementTitle,
         announcementContent: request.body.announcementContent,
         timestamp: request.body.timestamp,
       };
 
       if(request.files.image){
-        annoucementData.image = request.files.image[0].filename;
+        announcementData.image = request.files.image[0].filename;
       };
 
       if(request.files.video) {
-        annoucementData.video = request.files.video[0].filename;
+        announcementData.video = request.files.video[0].filename;
       };
 
       const announcement = await Announcement.findByIdAndUpdate(request.params.id, announcementData, {new: true});
-      if(!annoucement){
+      if(!announcement){
         return response.status(404).send({message: "Announcement not found"});
       }
       response.send({

@@ -186,7 +186,7 @@ export default function Home() {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/username`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${token}`
+        authorization: localStorage.getItem('jwt-token')
       },
     });
 
@@ -212,7 +212,7 @@ export default function Home() {
     const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/admin/adminUsername`, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${tokenAdmin}`
+        authorization: localStorage.getItem("jwt-tokenAdmin")
       },
 
     });

@@ -171,7 +171,7 @@ export default function Home() {
    
   const handleDeleteClick = async (id) =>{
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcements/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/announcement/${id}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('jwt-token')}`

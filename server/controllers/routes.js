@@ -108,9 +108,9 @@ router.put("/announcement/:id", upload.fields([{name: "image"}, {name: "video"}]
 });
 
 
-router.delete("/announcement/:id", async(request, response)=>{
+router.delete("/announcement/:_id", async(request, response)=>{
   try {
-    const announcement = await Announcement.findByIdAndDelete(request.params.id);
+    const announcement = await Announcement.findByIdAndDelete(request.params._id);
     if(!announcement) {
       return response.status(404).send({message: "Announcement not found"});
     }

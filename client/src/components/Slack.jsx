@@ -21,7 +21,7 @@ const Slack = () => {
           timestamp: msg.ts ? new Date(parseFloat(msg.ts) * 1000).toISOString() : new Date().toISOString(),
         }));
 
-        // Sort messages by timestamp in ascending order
+        // Sort messages by timestamp in descending order
         const sortedMessages = messagesWithDefaults.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
         
         setMessages(sortedMessages);
@@ -58,7 +58,7 @@ const Slack = () => {
   return (
     <div className="slack-container">
       <div className="sidebar">
-        <a href="http://localhost:5173/home" className="home-button">Home</a>
+        <button onClick={() => window.location.href = 'http://localhost:5173/home'} className='home-button'>Home</button>
         <div className="channel-info">
           Channel: {channelInfo ? channelInfo.name : 'Loading channel info...'}
         </div>
